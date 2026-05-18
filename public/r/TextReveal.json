@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "TextReveal",
+  "title": "Text Reveal",
+  "description": "Reveal text by reducing the height of the overlay",
+  "dependencies": [
+    "react",
+    "gsap"
+  ],
+  "registryDependencies": [
+    "http://localhost:3001/r/TextAnimation"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/ui/TextRevealByHeight.tsx",
+      "content": "import gsap from 'gsap'\r\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\r\nimport React, { ReactElement, RefObject, useEffect, useRef } from 'react'\r\n\r\ninterface Props {\r\n    children: ReactElement<{\r\n        className?: string;\r\n        ref?: React.Ref<HTMLElement>;\r\n    }>,\r\n}\r\n\r\nfunction TextRevealByHeight(props: Props) {\r\n    const {children} = props\r\n    const containerRef: RefObject<HTMLElement | null> = useRef<HTMLElement>(null)\r\n    const heightRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null)\r\n    \r\n    function animate_func(){\r\n        const el = heightRef.current\r\n        gsap.registerPlugin(ScrollTrigger)\r\n\r\n        gsap.fromTo(el, \r\n            {\r\n                scaleY: 1\r\n            }, \r\n            {\r\n                scaleY: 0,\r\n                scrollTrigger: {\r\n                    trigger: el,\r\n                    start: \"top 80%\",\r\n                    end: \"bottom 50%\",\r\n                    scrub: true\r\n                }\r\n            }\r\n        )\r\n    }\r\n\r\n    useEffect(()=>{\r\n        animate_func()\r\n    }, [])\r\n    // https://github.com/AkinolaVictor/webflux\r\n    // npx jsrepo add --repo https://github.com/AkinolaVictor/webflux\r\n    return (\r\n        <div className='w-full h-screen bg-black text-white flex flex-col justify-center items-center'>\r\n            <div className='relative w-auto h-auto max-w-201'>\r\n                \r\n                {\r\n                    React.cloneElement(children, {\r\n                        ref: containerRef,\r\n                        className: [\r\n                            children.props.className, \r\n                            \"text-parentz\"\r\n                        ].filter(Boolean).join(\" \")\r\n                    })\r\n                }\r\n\r\n                <div \r\n                    ref={heightRef}\r\n                    className={`\r\n                        layer-one w-full h-full bg-black absolute top-0 left-0 opacity-70 origin-bottom will-change-transform\r\n                    `}\r\n                />\r\n            </div>\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default TextRevealByHeight\r\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:component"
+}

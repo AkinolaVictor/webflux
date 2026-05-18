@@ -37,7 +37,8 @@ function TextRevealByHeight(props: Props) {
     useEffect(()=>{
         animate_func()
     }, [])
-
+    // https://github.com/AkinolaVictor/webflux
+    // npx jsrepo add --repo https://github.com/AkinolaVictor/webflux
     return (
         <div className='w-full h-screen bg-black text-white flex flex-col justify-center items-center'>
             <div className='relative w-auto h-auto max-w-201'>
