@@ -5,12 +5,12 @@ export const components_and_description = [
         desc2: "Transform static text into engaging experiences with animations triggered by scroll, hover, clicks, typing, cursor movement, and more. From elegant reveals to dynamic effects, create content that captures attention and guides users naturally through your interface."
     },
     {
-        name: "Transition",
+        name: "Transitions",
         desc: "Create seamless transitions between pages, sections, and states with elegant animations that make navigation feel natural.",
         desc2: "Create seamless transitions between pages, layouts, sections, and UI states. Whether navigating between routes or revealing new content, these animations add continuity, improve user flow, and make interactions feel smooth and intentional."
     },
     {
-        name: "Slider",
+        name: "Sliders",
         desc: "Build engaging sliders and carousels with fluid motion, intuitive controls, and responsive interactions for any type of content.",
         desc2: "Build interactive sliders and carousels with fluid motion, gesture support, autoplay, infinite looping, and customizable controls. Showcase images, testimonials, products, or content with animations that feel responsive across every device."
     },
