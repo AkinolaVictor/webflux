@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "install": "npm install --legacy-peer-deps",
+    "installx": "npm install --legacy-peer-deps",
     "start": "next start",
     "lint": "eslint",
     "shadcn": "npx shadcn build",
