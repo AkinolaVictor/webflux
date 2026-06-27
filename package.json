@@ -10,7 +10,7 @@
     "lint": "eslint",
     "shadcn": "npx shadcn build",
     "dev2": "npx next dev --webpack",
-    "git": "git add . && git commit -m 'hosting' && git push origin master"
+    "git": "git add . && git commit -m 'filling_data' && git push origin master"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",

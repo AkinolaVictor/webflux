@@ -1,4 +1,4 @@
-import { pad_x } from '@/utils/helper'
+import { get_component_data, pad_x } from '@/utils/helper'
 import React from 'react'
 import { LibraryBig } from 'lucide-react'
 import EachProperty from './EachProperty'
@@ -10,13 +10,16 @@ interface Props {}
 function ComponentProperties(props: Props) {
     const {} = props
     const path = usePathname()
-
     if(path=="/components") return null
+    
+    
+    const comp_data = get_component_data(path)
+    if(!comp_data) return null
 
     return (
         <div className={``}>
             <div className='flex justify-between w-full items-center mt-10'>
-                <p className='text-[18px] font-bold'>Properties</p>
+                <p className='text-[18px] font-bold'>Props</p>
                 <LibraryBig size={18}/>
                 
             </div>
@@ -26,7 +29,7 @@ function ComponentProperties(props: Props) {
             </p>
 
             {
-                [1,1,1].map((item, index)=>{
+                comp_data?.props.map((item:any, index:number)=>{
                     return (
                         <EachProperty 
                             key={index}

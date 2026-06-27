@@ -9,7 +9,7 @@ export const components_directories = [
     guide,
     texts,
     transitions,
-    sliders,
-    cursors,
-    components
+    // sliders,
+    // cursors,
+    // components
 ]

@@ -1,16 +1,16 @@
 {
     "$schema": "https://ui.shadcn.com/schema/registry.json",
     "name": "webflux",
-    "homepage": "https://webflux-rouge.vercel.app/",
+    "homepage": "http://localhost:3001",
     "items": [
         {
-            "name": "TextFade",
-            "type": "registry:component",
-            "title": "Text Fade",
+            "name": "TextAnimation",
+            "type": "registry:block",
+            "title": "Text Animation",
             "description": "A basic text animation component",
             "files": [
                 {
-                    "path": "src/registry/webflux/texts/TextFade.tsx",
+                    "path": "src/registry/default/ui/TextAnimationTemplate.tsx",
                     "type": "registry:ui"
                 }
             ],
@@ -18,29 +18,29 @@
             "registryDependencies": []
         },
         {
-            "name": "TextRevealByHeightOverlay",
+            "name": "TextReveal",
             "type": "registry:component",
-            "title": "Text Reveal By Height Overlay",
+            "title": "Text Reveal",
             "description": "Reveal text by reducing the height of the overlay",
             "files": [
                 {
-                    "path": "src/registry/webflux/texts/TextRevealByHeightOverlay.tsx",
+                    "path": "src/registry/default/ui/TextRevealByHeight.tsx",
                     "type": "registry:ui"
                 }
             ],
             "dependencies": ["react", "gsap"],
             "registryDependencies": [
-                "http://webflux-rouge.vercel.app/r/TextFade"
+                "http://localhost:3001/r/TextAnimation"
             ]
         },
         {
-            "name": "TextSkewFade",
+            "name": "TextColorFade",
             "type": "registry:component",
-            "title": "Text Skew Fade",
-            "description": "Reveal text by Skewing and Fading it in and out",
+            "title": "Text Reveal",
+            "description": "Reveal text by opacity toggle",
             "files": [
                 {
-                    "path": "src/registry/webflux/texts/TextSkewFade.tsx",
+                    "path": "src/registry/default/ui/TextColorFade.tsx",
                     "type": "registry:ui"
                 }
             ],

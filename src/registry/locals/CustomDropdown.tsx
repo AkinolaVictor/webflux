@@ -5,10 +5,12 @@ import React from 'react'
 interface Props {
     value: string,
     listOptions: any,
+    className?: string,
+    styles?: any,
 }
 
 function CustomDropdown(props: Props) {
-    const {value, listOptions} = props
+    const {value, listOptions, className, styles} = props
     const {setGeneralAlpha} = generalFunctions()
 
     function openModal(){
@@ -18,7 +20,7 @@ function CustomDropdown(props: Props) {
     }
 
     return (
-        <div onClick={()=>{openModal()}} className='darkbg px-2 cursor-pointer py-1.5 rounded-[6px] flex justify-between items-center gap-6'>
+        <div onClick={()=>{openModal()}} style={styles} className={`darkbg px-2 cursor-pointer py-1.5 rounded-[6px] flex justify-between items-center gap-6 ${className}`}>
             <p>{value}</p>
             <ChevronDown size={13}/>
         </div>

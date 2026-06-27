@@ -62,7 +62,7 @@ function ComponentMenu(props: Props) {
                                         >
                                             <p className='opacity-80'>{item_1.section}</p>
                                             <div className='flex items-center justify-center gap-1 hover:bg-[#3c3838] px-0.5 rounded-[5px]'>
-                                                <p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">22</p>
+                                                {item_1.content.length>1&&<p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">{item_1.content.length}</p>}
                                                 {
                                                     hid?
                                                     <ChevronUp size={"15px"}/>:

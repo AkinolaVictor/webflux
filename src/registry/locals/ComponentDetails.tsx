@@ -1,15 +1,19 @@
 import { ChevronDown, ChevronUp, CodeXml, Copy, Eye } from 'lucide-react'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco, hybrid, magula, monokai, rainbow } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { dark, a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import CLI_Prompts from './CLI_Prompts';
-import CodeBlock_Custom from './CodeBlock_Custom';
-import {sample_code} from "../../utils/codes/sample_code"
-import Select from 'react-select';
+// import CLI_Prompts from './CLI_Prompts';
+// import CodeBlock_Custom from './CodeBlock_Custom';
+// import {sample_code} from "../../utils/codes/sample_code"
+// import Select from 'react-select';
 import CustomDropdown from './CustomDropdown';
 import { generalFunctions } from '@/utils/generalFunctions';
 import ComponentProperties from './ComponentProperties';
+import { usePathname } from 'next/navigation';
+// import { components_directories } from '@/utils/comp_dir/components_directories';
+import { get_component_data } from '@/utils/helper';
+import Codeblock from './Codeblock';
 
 interface Props {}
 
@@ -18,18 +22,49 @@ function ComponentDetails(props: Props) {
     const view = false
     const [viewState, setView] = useState("preview")
     const {setGeneralAlpha} = generalFunctions()
-    const [library, setLibrary] = useState("React Code")
+    const [library, setLibrary] = useState({
+        title: "React Code",
+        description: "This is also fully compatible with NextJs.",
+        value: "rt"
+    })
     const [codeState, setCodeState] = useState("cli")
-    const [language, setLanguage] = useState("Typescript")
-    const [styling, setStyling] = useState("Tailwind")
+    const [language, setLanguage] = useState({
+        title: "Typescript",
+        description: "Use the typescript version of this code",
+        value: "ts"
+    })
+    const [styling, setStyling] = useState({
+        title: "Tailwind",
+        description: "Please ensure to have tailwind setup in your project",
+        value: "tw"
+    })
     const [concept, setConcept] = useState(false)
+    const path = usePathname()
+    // const [comp_data, setCompData] = useState<any>()
+    // console.log(path)
+    const comp_data:any = get_component_data(path)
+    useEffect(()=>{
+        // const resp = get_component_data(path)
+        // setCompData(resp)
+    }, [path])
+
+    // console.log(get_data())
+    const showcode = `${language.value}_${styling.value}`
+
+    if(comp_data === null) {
+        return (
+            <div className='w-full h-full bg-black flex justify-center items-center'>
+                <p>data not found</p>
+            </div>
+        )
+    }
 
     return (
         <div>
             
-            <p className='text-[23px] font-bold mt-10'>Crawling Texts</p>
+            <p className='text-[23px] font-bold mt-10'>{comp_data.title}</p>
             <p className='mt-1 opacity-70'>
-                A set of layered sections of content—known as tab panels—that are displayed one at a time.
+                {comp_data?.description}
             </p>
 
             {/* preview and code */}
@@ -78,7 +113,7 @@ function ComponentDetails(props: Props) {
                         {
                             concept?
                             <p className='mt-3 text-[13px] opacity-70 text-justify'>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, commodi? Ipsum odio veniam iste, hic eaque voluptas ea similique minus nihil autem? Optio at minima, exercitationem in nemo ex itaque eum eius. Beatae aliquid veniam delectus quam velit quod magni.
+                                {comp_data.concept}
                             </p>:
                             null
                         }
@@ -111,18 +146,20 @@ function ComponentDetails(props: Props) {
 
                         <div className='ml-auto'>
                             {/* <CustomDropdown 
-                                value={library}
+                                value={library.title}
                                 listOptions = {
                                     {
                                         title: "Library",
                                         options: [
                                             {
                                                 title: "React Code",
-                                                description: "This is also fully compatible with NextJs."
+                                                description: "This is also fully compatible with NextJs.",
+                                                value: "rt"
                                             },
                                             {
                                                 title: "Vue Code",
-                                                description: "This is also fully compatible with NuxtJs."
+                                                description: "This is also fully compatible with NuxtJs.",
+                                                value: "vu"
                                             },
                                         ],
                                         setter: (value:string)=>{setLibrary(value)}
@@ -136,7 +173,16 @@ function ComponentDetails(props: Props) {
                         {
                             codeState==="cli"?
                             <div>
-                                <CLI_Prompts />
+                                {/* <CLI_Prompts /> */}
+                                <Codeblock
+                                    hideNav
+                                    data={[
+                                        {
+                                            name: "npm",
+                                            code: comp_data?.setup.cli.npm
+                                        }
+                                    ]}
+                                />
 
                                 <p className='text-[20px] mt-8'>Usage</p>
                                 <div className={`w-full h-auto rounded-2xl mt-3 p-5 border border-[#757070] relative`}>
@@ -153,53 +199,72 @@ function ComponentDetails(props: Props) {
                                         showLineNumbers
                                         // useInlineStyles
                                     >
-                                    {sample_code}
+                                    {comp_data?.setup.cli.usage}
                                     </SyntaxHighlighter>
 
                                 </div>
                             </div>:
                             <div>
-                                <p className='mb-1'>Install Dependencies</p>
-                                <p className='text-[12px] mb-3 opacity-50'>You need to install the basic dependencies so the code could works properly</p>
-                                <CLI_Prompts />
+                                {
+                                    comp_data?.setup.rawcode.dependencies?
+                                    <div>
+                                        <p className='mb-1'>Install Dependencies</p>
+                                        <p className='text-[12px] mb-3 opacity-50'>You need to install the basic dependencies so the code could works properly</p>
+                                        {/* <CLI_Prompts /> */}
+                                        <Codeblock
+                                            hideNav
+                                            data={[
+                                                {
+                                                    name: "npm",
+                                                    code: comp_data?.setup.rawcode.dependencies
+                                                }
+                                            ]}
+                                        />
+                                    </div>:
+                                    null
+                                }
 
                                 <p className='mt-5'>Code</p>
                                 <div className='w-full flex gap-4 mt-3 mb-4'>
                                     <CustomDropdown 
-                                        value={language}
+                                        value={language.title}
                                         listOptions = {
                                             {
                                                 title: "Language",
                                                 options: [
                                                     {
                                                         title: "Typescript",
-                                                        description: "Use the typescript version of this code"
+                                                        description: "Use the typescript version of this code",
+                                                        value: "ts"
                                                     },
                                                     {
                                                         title: "Javascript",
-                                                        description: "Use the javascript version of this code"
+                                                        description: "Use the javascript version of this code",
+                                                        value: "js"
                                                     },
                                                 ],
-                                                setter: (value:string)=>{setLanguage(value)}
+                                                setter: (value:any)=>{setLanguage(value)}
                                             }
                                         }
                                     />
                                     <CustomDropdown 
-                                        value={styling}
+                                        value={styling.title}
                                         listOptions = {
                                             {
                                                 title: "Styling",
                                                 options: [
                                                     {
                                                         title: "Tailwind",
-                                                        description: "Please ensure to have tailwind setup in your project"
+                                                        description: "Please ensure to have tailwind setup in your project",
+                                                        value: "tw"
                                                     },
                                                     {
                                                         title: "Inline Css",
-                                                        description: "No dependency required for this to work"
+                                                        description: "No dependency required for this to work",
+                                                        value: "cs"
                                                     },
                                                 ],
-                                                setter: (value:string)=>{setStyling(value)}
+                                                setter: (value:any)=>{setStyling(value)}
                                             }
                                         }
                                     />
@@ -218,7 +283,8 @@ function ComponentDetails(props: Props) {
                                         showLineNumbers
                                         // useInlineStyles
                                     >
-                                    {sample_code}
+                                    {/* {sample_code} */}
+                                    {comp_data?.setup.rawcode.codes[showcode]}
                                     </SyntaxHighlighter>
 
                                 </div>

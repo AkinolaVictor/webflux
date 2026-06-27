@@ -27,7 +27,7 @@ function ModalList(props: Props) {
                     modalListOptions?.options?.map((item:any, index:number)=>{
                         const {title, description} = item
                         return (
-                            <div key={index} onClick={()=>{modalListOptions.setter(title); closeModal();}} className='cursor-pointer py-3 px-6 hover:bg-[#124332]'>
+                            <div key={index} onClick={()=>{modalListOptions.setter(item); closeModal();}} className='cursor-pointer py-3 px-6 hover:bg-[#124332]'>
                                 <p>{title}</p>
                                 <p className='opacity-50 text-[12px]'>{description}</p>
                             </div>
