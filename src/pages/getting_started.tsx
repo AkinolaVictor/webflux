@@ -155,7 +155,10 @@ function Getting_started(props: Props) {
                             </div>
                             <div className='w-0.5 h-full bg-[#262626]'/>
                         </div>
-                        <div className=' w-full flex flex-col gap-3.5 justify-start items-start '>
+                        <div 
+                            className='w-auto max-w-full flex flex-col gap-3.5 justify-start items-start bg-yellow-500s'
+                            style={{width: "calc(100% - 40px)"}}
+                        >
                             <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Import Components</p>
                             <p className='px-4'>Import the component to your project.</p>
                             
@@ -164,7 +167,10 @@ function Getting_started(props: Props) {
                                 style={hybrid} 
                                 // style={monokai} 
                                 // style={rainbow} 
-                                customStyle={{background: "#262626", width: "100%", borderRadius: "10px", padding: "20px", border: "none"}}
+                                wrapLines
+                                // wrapLongLines
+                                // customStyle={{background: "#262626", width: "calc(100% - 40px)", maxWidth: "100%", borderRadius: "10px", padding: "20px", border: "none"}}
+                                customStyle={{background: "#262626", width: "100%", maxWidth: "100%", borderRadius: "10px", padding: "20px", border: "none"}}
                                 showLineNumbers
                                 // useInlineStyles
                             >

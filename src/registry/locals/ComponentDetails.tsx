@@ -110,7 +110,7 @@ function ComponentDetails(props: Props) {
                         </div>
 
                         <div className='ml-auto'>
-                            <CustomDropdown 
+                            {/* <CustomDropdown 
                                 value={library}
                                 listOptions = {
                                     {
@@ -128,7 +128,7 @@ function ComponentDetails(props: Props) {
                                         setter: (value:string)=>{setLibrary(value)}
                                     }
                                 }
-                            />
+                            /> */}
                         </div>
                     </div>
                     

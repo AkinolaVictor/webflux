@@ -36,8 +36,8 @@ function Codeblock(props: Props) {
                 </div>
             </div>
 
-            <div className='bg-black w-full h-auto rounded-[11px] px-3 py-4  mb-1.5s'>
-                <code className='text-[#439EF4]'>
+            <div className='bg-black w-auto max-w-full h-auto rounded-[11px] px-3 py-4  mb-1.5s'>
+                <code className='text-[#439EF4] wrap-break-word break-all'>
                     {state.code}
                     {/* <span className='text-[#0A41C9]'>npx</span> shadcn@latest init */}
                 </code>
