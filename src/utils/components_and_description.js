@@ -1,6 +1,6 @@
 export const components_and_description = [
     {
-        name: "Text",
+        name: "Texts",
         desc: "Bring your words to life with smooth, customizable text animations triggered by scroll, hover, and other user interactions.",
         desc2: "Transform static text into engaging experiences with animations triggered by scroll, hover, clicks, typing, cursor movement, and more. From elegant reveals to dynamic effects, create content that captures attention and guides users naturally through your interface."
     },
