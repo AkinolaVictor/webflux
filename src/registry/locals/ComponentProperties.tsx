@@ -13,7 +13,7 @@ function ComponentProperties(props: Props) {
     if(path=="/components") return null
     
     
-    const comp_data = get_component_data(path)
+    const comp_data:any = get_component_data(path)
     if(!comp_data) return null
 
     return (
