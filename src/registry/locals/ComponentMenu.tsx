@@ -11,7 +11,7 @@ interface Props {
 
 function ComponentMenu(props: Props) {
     const {func} = props
-    const [toggleState, setToggleState] = useState([])
+    const [toggleState, setToggleState] = useState([""])
     const path = usePathname()
     const router = useRouter()
 
