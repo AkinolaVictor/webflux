@@ -1,0 +1,61 @@
+
+A fully kinetic and event-driven, open source web components that help you write 
+less codes and build faster and makes your project stand out.
+
+Reconstruct this sentense for makes
+
+A fully animated and event-driven web components library, open source to help you
+write less codes and build faster.
+
+
+I am building a web component library, with the vision of making fully animated, event-driven, 
+and very easy to use (and also copy and paste-if they like) components, that is also fully open source.
+
+Write me a title for this project (less than 25 words), that i can use for the hero section.
+Write me a description for this project (less than 70 words), that i can use for the hero section.
+
+here are samples from other websites
+title: Animate your UI with smooth style
+description: A fully animated, open-source React component distribution. Browse a list of animated primitives, components and icons you can install and use in your projects.
+
+
+Here are the categories of components to be had in this ui library, write me a description for each of this category. 
+Ensure each is less than 50 words, and straight to the point.
+
+1. Text animation
+2. Transition animation (to transition between one page to another, or from one section of a page to another)
+3. Slider/carousel
+4. cursors
+5. More (To describe that we still have more coming soon)
+
+
+write me a very good introduction for this ui library, considering the information you already have.
+
+here's an example you can follow:
+
+"React Bits is an open-source collection of carefully designed UI components that aim to enhance your React web applications.
+
+This is not your typical component library, which means you won't find a set of generic buttons, inputs, or other common UI elements here.
+
+Basically, these components are here to help you stand out and make a statement visually by adding a touch of creativity to your projects."
+
+Ensure to write something better than this.
+
+
+
+Write a suitable mission and vision for this ui library, see an example below, for format
+
+The goal of React Bits is simple - provide flexible, visually stunning and most importantly, free components that take web projects to the next level.
+
+To make that happen, the project is committed to the following principles:
+
+Free For All: You own the code, and it's free to use in your projects
+Prop-First Approach: Easy customization through thoughtfully exposed props
+Fully Modular: Install strictly what you need, React Bits is not a dependency
+Free Choice: JS or TS, plain CSS or Tailwind, the code is all here
+
+
+
+
+
+write a description of the perfect approach for building this ui library

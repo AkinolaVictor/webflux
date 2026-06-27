@@ -10,11 +10,16 @@ function HomeDescription(props: Props) {
 
     return (
         <div className={`w-full ${pad_x} py-10 mt-20 text-center gap-7 h-auto flex flex-col justify-center items-center max-w-220`}>
-            <h1 className='text-[30px] font-bold'>Animate your UI with smooth style</h1>
+            {/* <h1 className='text-[30px] font-bold'>Bring Motion and Interaction to Every Interface</h1> */}
+            {/* <h1 className='text-[30px] font-bold'>Beautiful, Event-Driven Components for the Modern Web</h1> */}
+            {/* <h1 className='text-[30px] font-bold'>Open-Source Components That Feel Alive</h1> */}
+            <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
             <p className='text-[rosybrown] text-[16px]'>
-                A fully animated, open-source React component distribution. 
-                Browse a list of animated primitives, components and icons 
-                you can install and use in your projects.
+                {/* An open-source collection of fully animated web components powered by native 
+                browser events. Easy to use, easy to customize, and simple to copy, paste, or install in any project. */}
+
+                An open-source collection of beautifully animated components that respond naturally to user interactions. 
+                Easy to use, easy to customize, and simple to copy, paste, or install in any project.
             </p>
             <div className='flex justify-center items-center flex-wrap gap-3'>
                 <Link href={"/getting_started"}>

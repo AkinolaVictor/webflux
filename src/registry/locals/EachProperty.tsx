@@ -37,7 +37,7 @@ function EachProperty(props: Props) {
                 </p>:
                 <p></p>
             }
-            <div onClick={()=>setHid(!hid)} className='text-center w-full cursor-pointer'>
+            <div onClick={()=>setHid(!hid)} className='text-center w-full cursor-pointer mt-2'>
 
                 {
                     !hid?
@@ -46,7 +46,7 @@ function EachProperty(props: Props) {
                 }
             </div>
 
-            <div className='mt-5 mb-3 bg-[#504949] w-full h-auto rounded-[25px]'>
+            <div className='mt-2 mb-0 bg-[#504949] w-full h-auto rounded-[25px]'>
                 {/* <Custom_Slider /> */}
                 <Custom_Radio />
             </div>

@@ -3,6 +3,7 @@ import EachCard from "@/registry/locals/home/EachCard";
 import HomeDescription from "@/registry/locals/home/HomeDescription";
 import TopHeader from "@/registry/locals/home/TopHeader";
 import { pad_x } from "@/utils/helper";
+import { components_and_description } from "@/utils/components_and_description";
 import Head from "next/head";
 
 
@@ -24,12 +25,14 @@ export default function Home() {
 
       <div className={`flex gap-6 flex-wrap justify-center items-center ${pad_x}`}>
         {
-          [1,2,3].map((item, index)=>{
+          components_and_description.map((item, index)=>{
+            const {name, desc, homehide} = item
+            if(homehide) return
             return (
               <EachCard 
                 key={index}
-                title="Text Animations"
-                description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi aperiam molestias ratione. "
+                title={name}
+                description={desc}
               />
             )
           })
