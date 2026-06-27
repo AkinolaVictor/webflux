@@ -26,6 +26,7 @@ export default function Home() {
       <div className={`flex gap-6 flex-wrap justify-center items-center ${pad_x}`}>
         {
           components_and_description.map((item, index)=>{
+            // const {name, desc, homehide} = item
             const {name, desc, homehide} = item
             if(homehide) return
             return (
