@@ -125,6 +125,7 @@ function TextFade_2(props: Props) {
             //     color: ["blue", "green"], 
             //     x: [100, 0]
             // }
+            // if(ready===false) return
 
             const obj = typeof(extendAnimation)=="object"?
                         extendAnimation:
@@ -211,8 +212,8 @@ function TextFade_2(props: Props) {
             })
         }
 
-        if(ready===false) setReady(true)
-            
+        setReady(true)
+
         return () => splitRef.revert();
     }
 
