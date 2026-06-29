@@ -12,23 +12,31 @@ function Text_Fade_Preview(props: Props) {
     return (
         <div className='w-full h-full'>
             
-            <div className='w-full h-full flex flex-col justify-center items-center p-6'>
-                <div className='darkbg w-10 h-10 -mt-7 mb-7 rounded-full flex justify-center items-center'>
-                    1
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    1/6
                 </div>
                 <TextFade_2
                     progression="char"
                     scroll_con={'.component-preview-container'}
-                    className='text-[25px] font-bold'
+                    className='text-[25px] font-bold text-center'
                     text={`
                         Text Fade Animation Preview Examples
                     `}
                 />
+                <TextFade_2
+                    progression="char"
+                    scroll_con={'.component-preview-container'}
+                    className='text-[25px] font-bold text-center'
+                    text={`
+                        (keep scrolling)
+                    `}
+                />
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center p-6'>
-                <div className='darkbg w-10 h-10 -mt-7 mb-7 rounded-full flex justify-center items-center'>
-                    2
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    2/6
                 </div>
                 <TextFade_2
                     progression="char"
@@ -42,14 +50,14 @@ function Text_Fade_Preview(props: Props) {
 
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center p-6'>
-                <div className='darkbg w-10 h-10 -mt-7 mb-7 rounded-full flex justify-center items-center'>
-                    3
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    3/6
                 </div>
                 <TextFade_2
                     progression="char"
                     scroll_con={'.component-preview-container'}
-                    // className='text-[20px]'
+                    className='w11:text-[20px]'
                     playOnScroll
                     text={`
                         This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
@@ -58,30 +66,30 @@ function Text_Fade_Preview(props: Props) {
 
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center p-6'>
-                <div className='darkbg w-10 h-10 -mt-7 mb-7 rounded-full flex justify-center items-center'>
-                    4
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    4/6
                 </div>
                 <TextFade_2
                     progression="line"
                     scroll_con={'.component-preview-container'}
                     playOnScroll
-                    // className='text-[20px]'
+                    className='w11:text-[20px]'
                     text={`
                         Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
                     `}
                 />
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center p-6'>
-                <div className='darkbg w-10 h-10 -mt-7 mb-7 rounded-full flex justify-center items-center'>
-                    5
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    5/6
                 </div>
                 <TextFade_2
                     progression="char_line"
                     scroll_con={'.component-preview-container'}
                     playOnScroll
-                    // className='text-[20px]'
+                    className='w11:text-[20px]'
                     // speed={9}
                     text={`
                         Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
@@ -89,9 +97,9 @@ function Text_Fade_Preview(props: Props) {
                 />
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center p-6'>
-                <div className='darkbg w-10 h-10 -mt-7 mb-7 rounded-full flex justify-center items-center'>
-                    6
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    6/6
                 </div>
                 <TextFade_2
                     className='text-[20px]'
@@ -103,7 +111,7 @@ function Text_Fade_Preview(props: Props) {
                 />
             </div>
 
-            {/* <div className='w-full h-full flex flex-col justify-center items-center p-10'>
+            {/* <div className='w-full h-full flex flex-col justify-center items-center relative p-10'>
                 <TextFade
                     scrub
                     scroll_con={'.component-preview-container'}
@@ -120,7 +128,7 @@ function Text_Fade_Preview(props: Props) {
                     text='This is what you see when scrub is true'
                 />
             </div>
-            <div className='w-full h-full flex flex-col justify-center items-center p-10'>
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-10'>
                 <TextRevealByHeightOverlay 
                     scroll_con={'.component-preview-container'}
                     text={`

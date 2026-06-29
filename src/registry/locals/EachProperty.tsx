@@ -38,17 +38,17 @@ function EachProperty(props: Props) {
                 <p className='text-[12px] mt-2 opacity-80'>{item.range}</p>:
                 null
             }
-            <p className='text-[11px] mt-3'>
+            <div className='text-[11px] mt-3'>
                 {item.description}
-            </p>
+            </div>
             {
                 item.more_des?
                 <div>
                     {
                         hid?
-                        <p className='text-[11px] mt-3'>
+                        <div className='text-[11px] mt-3'>
                             {item.more_des}
-                        </p>:
+                        </div>:
                         <p></p>
                     }
                     <div onClick={()=>setHid(!hid)} className='text-center w-full cursor-pointer mt-2'>

@@ -1,3 +1,4 @@
+import CodeBlock_Custom from "@/registry/locals/CodeBlock_Custom";
 import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
 import { ALargeSmall, Type } from "lucide-react";
 
@@ -190,26 +191,119 @@ export const texts_fade = {
     preview: Text_Fade_Preview,
     props: [
         {
-            name: "animationDuration",
-            type: "number",
-            description: "Some brief detail",
+            name: "text",
+            type: "string",
+            description: "The text you want to animate",
             // more_des: "Many more explanation to help understand better",
             value: 12
         },
         {
-            name: "strokelength",
+            name: "scroll_con",
             type: "number",
-            description: "Some brief detail",
-            more_des: "Many more explanation to help understand better",
+            description: <p>
+                The container for which the scrollTrigger should watch 
+                <br />(Ignore this if you're using the default window scrolling element.)
+            </p>,
+            more_des: <p>
+                If you have a scrollable container and you want the animation to 
+                respond to this scrollable container, add a class name or id (for example: "container"),
+                then set scroll_con to ".container" (like this scroll_con=".container"), 
+                <br />
+                <br />
+                Note: This is only useful if you want to trigger your scroll animaton based on another scrollable element, otherwise, just ignore it
+            </p>,
             value: 12
         },
         {
-            name: "textClassName",
+            name: "progression",
             type: "string",
-            range: "value1 | value2 | value3 | value4",
-            description: "Some brief detail",
-            more_des: "Many more explanation to help understand better",
+            range: "char | word | line | char_line | word_line",
+            description: "The animation progression, how you want the animation to progressively play (default is char)",
+            more_des: <p>
+                <b>char</b>: play animation character by character
+                <br />
+                <br />
+                word: play animation word by word
+                <br />
+                <br />
+                line: play animation line by line
+                <br />
+                <br />
+                char_line: play animation on each line simultaneously, character by character.
+                <br />
+                <br />
+                word_line: play animation on each line simultaneously, word by word.
+            </p>,
             value: "value1"
+        },
+        {
+            name: "style",
+            type: "object",
+            description: "An object containing all the styles you want to add to your text",
+            // more_des: "Many more explanation to help understand better",
+            // value: true
+        },
+        {
+            name: "className",
+            type: "string",
+            description: "All the classes your want to add to the text container",
+            // more_des: "Many more explanation to help understand better",
+            // value: true
+        },
+        {
+            name: "speed",
+            type: "number",
+            range: "Between 0.001 - 2",
+            description: "How fast you want the animation to play.",
+            more_des: "A good range is between 0.001 and 2, but you can go below and above that",
+        },
+        {
+            name: "playOnScroll",
+            type: "boolean",
+            range: "default is false",
+            description: "If you want the animation to play responsively to user scroll",
+            more_des: "This takes any value you can add to gsap scrolltrigger scrub",
+            value: true
+        },
+        {
+            name: "playInView",
+            type: "boolean",
+            range: "default is false",
+            description: "If you want to play when its scrolled to view from the bottom",
+            more_des: "By default, the animation automatically plays (even if its not in view), but if you want it only to play when its scrolled to view, set this prop to true",
+            value: true
+        },
+        {
+            name: "delay",
+            type: "number",
+            range: "true | false",
+            description: "How long you want to be delayed the animation before playing",
+            // more_des: "Many more explanation to help understand better",
+            // value: true
+        },
+        {
+            name: "timeline",
+            type: "gsap timeline",
+            range: "your own gsap.timeline()",
+            description: "If you want this animation to play sequentially with regards to you own timeline",
+            more_des: <CodeBlock_Custom>{`// if you have your own gsap timeline (for example)
+const tl = gsap.timeline()
+// then pass it to the component, as in
+timeline={tl}
+            `}</CodeBlock_Custom>,
+        },
+        {
+            name: "gsapScrollTrigger",
+            type: "object or function",
+            // range: "true | false",
+            description: "Control the scrollTrigger by adding more details to it",
+            more_des: <p>
+                Basically everything that works in a gsap scrollTrigger also work here, 
+                <br />
+                <br />
+                In case you want to use the timeline to do stuffs within the scrollTrigger, pass a function (instead of an object), and receive the timeline as a prop in your function, but ensure to return an object from that function.
+            </p>,
+            value: true
         },
         {
             name: "stagger",
