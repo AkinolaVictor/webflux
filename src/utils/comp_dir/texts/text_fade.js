@@ -254,7 +254,7 @@ export const texts_fade = {
             name: "speed",
             type: "number",
             range: "Between 0.001 - 2",
-            description: "How fast you want the animation to play.",
+            description: "How fast or slow you want the animation to play.",
             more_des: "A good range is between 0.001 and 2, but you can go below and above that",
         },
         {
@@ -306,10 +306,10 @@ timeline={tl}
             value: true
         },
         {
-            name: "stagger",
-            type: "boolean",
-            range: "true | false",
-            description: "Some brief detail",
+            name: "extendAnimation",
+            type: "object",
+            range: <p>sample: {`{color: ["blue", "red"]}`}</p>,
+            description: "Get more add more animations to the existing one",
             more_des: "Many more explanation to help understand better",
             value: true
         },

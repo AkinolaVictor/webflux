@@ -27,31 +27,31 @@ function EachProperty(props: Props) {
     }
     return (
         
-        <div className='w-full darkbg h-auto px-3 py-2 my-5 rounded-[5px]'>
+        <div className='w-full max-w-full darkbg h-auto px-3 py-2 my-5 rounded-[5px]'>
             <div className='flex justify-between items-center overpass'>
-                <p className='text-[14px] font-bold text-green-500'>{item.name}</p>
+                <div className='text-[14px] font-bold text-green-500'>{item.name}</div>
                 <p className='text-[9px]'>{item.type}</p>
             </div>
 
             {
                 item.range?
-                <p className='text-[12px] mt-2 opacity-80'>{item.range}</p>:
+                <div className='text-[12px] mt-2 opacity-80'>{item.range}</div>:
                 null
             }
-            <div className='text-[11px] mt-3'>
+            <div className='text-[11px] mt-3 w-full max-w-full overflow-auto'>
                 {item.description}
             </div>
             {
                 item.more_des?
-                <div>
+                <div className=' w-full'>
                     {
                         hid?
-                        <div className='text-[11px] mt-3'>
+                        <div className='text-[11px] mt-3  w-full max-w-full overflow-auto'>
                             {item.more_des}
                         </div>:
                         <p></p>
                     }
-                    <div onClick={()=>setHid(!hid)} className='text-center w-full cursor-pointer mt-2'>
+                    <div onClick={()=>setHid(!hid)} className='text-center w-full cursor-pointer mt-2 font-bold'>
 
                         {
                             !hid?

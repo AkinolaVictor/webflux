@@ -28,9 +28,9 @@ function Text_Fade_Preview(props: Props) {
                     className='text-[25px] font-bold text-center'
                     extendAnimation={{
                         color: ["blue", "yellow"],
-                        x: [100, 0],
-                        y: [100, 0],
-                        skewX: [70, 0]
+                        // x: [100, 0],
+                        // y: [100, 0],
+                        // skewX: [70, 0]
                     }}
                     text={`
                         Text Fade Animation Preview Examples (keep scrolling)

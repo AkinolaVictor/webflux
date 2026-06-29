@@ -16,8 +16,6 @@ interface Props {
     delay?: number,
     timeline?: any,
     gsapScrollTrigger?: any,
-    furtherAnimateFrom?: any,
-    furtherAnimateTo?: any,
     extendAnimation?: any
 }
 
@@ -37,8 +35,6 @@ function TextFade_2(props: Props) {
         timeline=undefined,
         speed, // 0.005 - 1
         gsapScrollTrigger,
-        furtherAnimateFrom,
-        furtherAnimateTo,
         extendAnimation
     } = props
     const containerRef = useRef<HTMLParagraphElement | null>(null);
