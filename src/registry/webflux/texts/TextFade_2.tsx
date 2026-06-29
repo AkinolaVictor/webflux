@@ -16,8 +16,9 @@ interface Props {
     delay?: number,
     timeline?: any,
     gsapScrollTrigger?: any,
-    furtherAnimateFrom?: any
-    furtherAnimateTo?: any
+    furtherAnimateFrom?: any,
+    furtherAnimateTo?: any,
+    extendAnimation?: any
 }
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
@@ -38,6 +39,7 @@ function TextFade_2(props: Props) {
         gsapScrollTrigger,
         furtherAnimateFrom,
         furtherAnimateTo,
+        extendAnimation
     } = props
     const containerRef = useRef<HTMLParagraphElement | null>(null);
     const [ready, setReady] = useState(false)
@@ -61,7 +63,7 @@ function TextFade_2(props: Props) {
             // x: 100,
             opacity: 0,
             // skewX: 70,
-            ...furtherAnimateFrom
+            ...build_extend_animation("from")
         })
 
         function progression_state () {
@@ -117,6 +119,36 @@ function TextFade_2(props: Props) {
             }
         }
 
+
+        function build_extend_animation(which:"from" | "to"){
+            // const ext2 = {
+            //     color: ["blue", "green"], 
+            //     x: [100, 0]
+            // }
+
+            const obj = typeof(extendAnimation)=="object"?
+                        extendAnimation:
+                        {}
+            
+            const input_obj = Object.entries(obj).map((each)=>{
+                const [key, val] = each
+                return {key, val}
+            })
+    
+            const all:any = {}
+    
+            for(let i=0; i<input_obj.length; i++){
+                const key = input_obj[i].key
+                const val: any = input_obj[i].val
+                const which_val = which=="from"?val[0]:
+                                which=="to"?val[1]:
+                                ""
+                all[key] = which_val
+            }
+            
+            return all
+        }
+
         const paused = (playOnScroll || playInView)?true:false
         const tl = timeline || gsap.timeline({paused, delay})
 
@@ -134,7 +166,7 @@ function TextFade_2(props: Props) {
                     {
                         opacity: 1,
                         ease: "power3.out",
-                        ...furtherAnimateTo
+                        ...build_extend_animation("to")
                     },
                     charIndexInLine*progression_state().speed_0 //use for speed (fast or slow)
                 )
@@ -179,14 +211,15 @@ function TextFade_2(props: Props) {
             })
         }
 
-        setReady(true)
+        if(ready===false) setReady(true)
+            
         return () => splitRef.revert();
     }
 
     useEffect(()=>{
         const anim = animator()
         return anim
-    }, [])
+    }, [ready])
 
 
     return (

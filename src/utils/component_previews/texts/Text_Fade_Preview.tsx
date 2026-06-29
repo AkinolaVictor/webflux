@@ -8,6 +8,12 @@ interface Props {}
 
 function Text_Fade_Preview(props: Props) {
     const {} = props
+    // const ext = {
+    //     color: ["blue", "green"], 
+    //     x: [100, 0]
+    // }
+
+    
 
     return (
         <div className='w-full h-full'>
@@ -20,18 +26,24 @@ function Text_Fade_Preview(props: Props) {
                     progression="char"
                     scroll_con={'.component-preview-container'}
                     className='text-[25px] font-bold text-center'
+                    extendAnimation={{
+                        color: ["blue", "yellow"],
+                        x: [100, 0],
+                        y: [100, 0],
+                        skewX: [70, 0]
+                    }}
                     text={`
-                        Text Fade Animation Preview Examples
+                        Text Fade Animation Preview Examples (keep scrolling)
                     `}
                 />
-                <TextFade_2
+                {/* <TextFade_2
                     progression="char"
                     scroll_con={'.component-preview-container'}
                     className='text-[25px] font-bold text-center'
                     text={`
                         (keep scrolling)
                     `}
-                />
+                /> */}
             </div>
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
@@ -91,6 +103,13 @@ function Text_Fade_Preview(props: Props) {
                     playOnScroll
                     className='w11:text-[20px]'
                     // speed={9}
+                    // extendAnimation={{
+                    //     color: ["blue", "yellow"],
+                    //     x: [100, 0],
+                    //     y: [100, 0],
+                    //     skewX: [70, 0],
+                    //     // opacity: [100, 100],
+                    // }}
                     text={`
                         Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
                     `}
