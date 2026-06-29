@@ -47,6 +47,7 @@ import TextFade from './TextFade';
     className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
 />
 
+
 // timeline prop
 const tl = gsap.timeline({delay: 1.5});
 <TextFade
@@ -56,6 +57,53 @@ const tl = gsap.timeline({delay: 1.5});
     playOnScroll
     timeline={tl}
     className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+/>
+
+
+// gsap Scrolltrigger prop
+// ensure that either playOnScroll or playInView is set to true
+// OBJECT EXAMPLE
+<TextFade
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    scroll_con={'.component-preview-container'}
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+    playOnScroll
+    gsapScrollTrigger={{
+        start: "top 80%", //when animation should start
+        end: "top 35%", //when animation should end
+        trigger: ".another_element", //element to trigger animation
+        scroller: {document.querySelector(".another_scroller")}, //to overwrite the window scroll element to watch
+        scrub: false
+        // basically anything that works in gsap scrollTrigger also works here
+    }}
+/>
+
+
+// gsap Scrolltrigger prop
+// ensure that either playOnScroll or playInView is set to true
+// FUNCTION EXAMPLE
+<TextFade
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    scroll_con={'.component-preview-container'}
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+    playOnScroll
+    gsapScrollTrigger={(timeline)=>{
+        // you can do anything here
+        // basically anyhing you can do with gsap scrollTrigger also works here
+        return {
+            start: "top 80%", //when animation should start
+            end: "top 35%", //when animation should end
+            trigger: ".another_element", //element to trigger animation
+            scroller: {document.querySelector(".another_scroller")}, //to overwrite the window scroll element to watch
+            scrub: false,
+            animation: timeline, //i used the timeline here
+            onEnter: ()=>timeline.restart(), //i used the timeline here
+            onLeaveBack: ()=>timeline.pause(), //i used the timeline here
+            // basically anything that works in gsap scrollTrigger also works here
+        }
+    }}
 />
 `
 
