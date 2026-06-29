@@ -133,10 +133,32 @@ function TextFade_2(props: Props) {
                     {
                         opacity: 1,
                         ease: "power3.out",
+                        // ScrollTrigger: {
+                        //     trigger: char,
+                        //     scroller,
+                        //     start: "top 80%",
+                        //     // end: "top 70%",
+                        //     scrub: playOnScroll,
+                        //     // animation: tl,
+                        //     ...moreScrollTrigger(),
+                        // },
                         ...furtherAnimateTo
                     },
                     charIndexInLine*progression_state().speed_0 //use for speed (fast or slow)
                 )
+
+                // if(playOnScroll){
+                //     ScrollTrigger.create({
+                //         // trigger: el,
+                //         trigger: char,
+                //         scroller,
+                //         start: "top 80%",
+                //         // end: "top 70%",
+                //         scrub: playOnScroll,
+                //         animation: tl,
+                //         ...moreScrollTrigger(),
+                //     })
+                // }
             })
             
             return tl
@@ -166,9 +188,29 @@ function TextFade_2(props: Props) {
                 animation: tl,
                 ...moreScrollTrigger(),
             })
+            
+            // progression_state().animate.forEach((charz:any, index:number)=>{
+            //     const check_progression = progression==="char_line" || progression==="word_line"
+            //     let char = check_progression ? charz.char : charz
+            //     const charIndexInLine = check_progression ? charz.charIndexInLine : index
+                
+            //     ScrollTrigger.create({
+            //         // trigger: el,
+            //         trigger: char,
+            //         scroller,
+            //         start: "top 80%",
+            //         end: "top 35%",
+            //         scrub: playOnScroll,
+            //         animation: tl,
+            //         ...moreScrollTrigger(),
+            //     })
+
+            // })
+
         } else if (playInView){
             ScrollTrigger.create({
                 trigger: el,
+                // trigger: progression_state().animate,
                 scroller,
                 start: "top bottom",
                 onEnter: ()=>tl.restart(),
@@ -181,7 +223,8 @@ function TextFade_2(props: Props) {
     }
 
     useEffect(()=>{
-        return animator()
+        const anim = animator()
+        return anim
     }, [])
 
 
