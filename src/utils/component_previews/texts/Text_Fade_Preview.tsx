@@ -1,5 +1,5 @@
-import TextFade from '@/registry/webflux/texts/TextFade'
-import TextFade_2 from '@/registry/webflux/texts/TextFade_2'
+import TextFade from '@/registry/webflux/texts/textprogression/TextFade'
+// import TextFade_2 from '@/registry/webflux/texts/TextFade_2'
 import TextRevealByHeightOverlay from '@/registry/webflux/texts/TextRevealByHeightOverlay'
 import TextSkewFade from '@/registry/webflux/texts/TextSkewFade'
 import React from 'react'
@@ -8,13 +8,7 @@ interface Props {}
 
 function Text_Fade_Preview(props: Props) {
     const {} = props
-    // const ext = {
-    //     color: ["blue", "green"], 
-    //     x: [100, 0]
-    // }
-
     
-
     return (
         <div className='w-full h-full'>
             
@@ -22,36 +16,22 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     1/6
                 </div>
-                <TextFade_2
-                    progression="char"
+
+                <TextFade
+                    // progression="char"
                     scroll_con={'.component-preview-container'}
                     className='text-[25px] font-bold text-center'
-                    extendAnimation={{
-                        // color: ["blue", "yellow"],
-                        opacity: [0.3, 1],
-                        // color: ["#121212", "white"],
-                        // x: [100, 0],
-                        // y: [100, 0],
-                    }}
                     text={`
                         Text Fade Animation Preview Examples (keep scrolling)
                     `}
                 />
-                {/* <TextFade_2
-                    progression="char"
-                    scroll_con={'.component-preview-container'}
-                    className='text-[25px] font-bold text-center'
-                    text={`
-                        (keep scrolling)
-                    `}
-                /> */}
             </div>
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/6
                 </div>
-                <TextFade_2
+                <TextFade
                     progression="char"
                     scroll_con={'.component-preview-container'}
                     className='text-[20px]'
@@ -67,7 +47,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     3/6
                 </div>
-                <TextFade_2
+                <TextFade
                     progression="char"
                     scroll_con={'.component-preview-container'}
                     className='w11:text-[20px]'
@@ -83,7 +63,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     4/6
                 </div>
-                <TextFade_2
+                <TextFade
                     progression="line"
                     scroll_con={'.component-preview-container'}
                     playOnScroll
@@ -98,7 +78,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     5/6
                 </div>
-                <TextFade_2
+                <TextFade
                     progression="char_line"
                     scroll_con={'.component-preview-container'}
                     playOnScroll
@@ -121,7 +101,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     6/6
                 </div>
-                <TextFade_2
+                <TextFade
                     className='text-[20px]'
                     scroll_con={'.component-preview-container'}
                     playInView

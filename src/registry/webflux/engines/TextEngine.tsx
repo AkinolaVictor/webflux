@@ -4,25 +4,9 @@ import { SplitText } from 'gsap/SplitText';
 import React, { Children, useEffect, useRef, useState } from 'react'
 import { TextProgression } from '../types/textProgession.types';
 
-// interface Props {
-//     text: string,
-//     scroll_con: string,
-//     progression?: "char" | "word" | "line" | "char_line" | "word_line",
-//     style?: any,
-//     className?: string,
-//     children?: string,
-//     speed?: number,
-//     playOnScroll?: boolean | number | undefined,
-//     playInView?: boolean,
-//     delay?: number,
-//     timeline?: any,
-//     gsapScrollTrigger?: any,
-//     extendAnimation?: any
-// }
-
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-function TextFade_2(props: TextProgression) {
+function TextEngine(props: TextProgression) {
     const {
         text, 
         scroll_con,
@@ -36,7 +20,8 @@ function TextFade_2(props: TextProgression) {
         timeline=undefined,
         speed, // 0.005 - 1
         gsapScrollTrigger,
-        extendAnimation
+        defaultAnimation,
+        extendAnimation,
     } = props
     const containerRef = useRef<HTMLParagraphElement | null>(null);
     const [ready, setReady] = useState(false)
@@ -58,10 +43,9 @@ function TextFade_2(props: TextProgression) {
         const {chars, lines, words} = splitRef
         
         gsap.set(progression_state().set, {
-            // x: 100,
             opacity: 0,
-            // skewX: 70,
-            ...build_extend_animation("from")
+            ...build_extend_animation(defaultAnimation, "from"),
+            ...build_extend_animation(extendAnimation, "from")
         })
 
         function progression_state () {
@@ -106,7 +90,7 @@ function TextFade_2(props: TextProgression) {
                     chars
                 ),
                 animate: anim,
-                speed_0: speed || ( //0.005 - 1
+                speed_0: speed || (
                     progression=="char"?(playOnScroll?0.005:0.1):
                     progression=="word"?0.35:
                     progression=="line"?0.9:
@@ -118,15 +102,10 @@ function TextFade_2(props: TextProgression) {
         }
 
 
-        function build_extend_animation(which:"from" | "to"){
-            // const ext2 = {
-            //     color: ["blue", "green"], 
-            //     x: [100, 0]
-            // }
-            // if(ready===false) return
+        function build_extend_animation(animation: object, which:"from" | "to"){
 
-            const obj = typeof(extendAnimation)=="object"?
-                        extendAnimation:
+            const obj = typeof(animation)=="object"?
+                        animation:
                         {}
             
             const input_obj = Object.entries(obj).map((each)=>{
@@ -165,7 +144,8 @@ function TextFade_2(props: TextProgression) {
                     {
                         opacity: 1,
                         ease: "power3.out",
-                        ...build_extend_animation("to")
+                        ...build_extend_animation(defaultAnimation, "to"),
+                        ...build_extend_animation(extendAnimation, "to")
                     },
                     charIndexInLine*progression_state().speed_0 //use for speed (fast or slow)
                 )
@@ -241,4 +221,4 @@ function TextFade_2(props: TextProgression) {
     )
 }
 
-export default TextFade_2
+export default TextEngine

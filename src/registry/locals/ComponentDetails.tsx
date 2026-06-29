@@ -95,29 +95,33 @@ function ComponentDetails(props: Props) {
             {
                 viewState=="preview"?
                 <div>
-                    <div className='w-full h-auto p-4 darkbg rounded-[10px] mt-7'>
-                        <div className='flex justify-between items-center cursor-pointer' onClick={()=>setConcept(!concept)}>
-                            <p className='text-[14px]'>
+                    {
+                        comp_data.concept?
+                        <div className='w-full h-auto p-4 darkbg rounded-[10px] mt-7'>
+                            <div className='flex justify-between items-center cursor-pointer' onClick={()=>setConcept(!concept)}>
+                                <p className='text-[14px]'>
+                                    {
+                                        concept?
+                                        "Concept":
+                                        "Understand the concept"
+                                    }
+                                </p>
                                 {
                                     concept?
-                                    "Concept":
-                                    "Understand the concept"
+                                    <ChevronUp size={17} />:
+                                    <ChevronDown size={17} />
                                 }
-                            </p>
+                            </div>
                             {
                                 concept?
-                                <ChevronUp size={17} />:
-                                <ChevronDown size={17} />
+                                <p className='mt-3 text-[13px] opacity-70 text-justify'>
+                                    {comp_data.concept}
+                                </p>:
+                                null
                             }
-                        </div>
-                        {
-                            concept?
-                            <p className='mt-3 text-[13px] opacity-70 text-justify'>
-                                {comp_data.concept}
-                            </p>:
-                            null
-                        }
-                    </div>
+                        </div>:
+                        null
+                    }
                     <div className={`component-preview-container w-full h-120 bg-amber-600s rounded-2xl_e mt-5 border border-[#757070] overflow-x-hidden overflow-y-auto`}>
                         {
                             ThisPreview?

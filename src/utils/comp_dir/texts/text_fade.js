@@ -2,17 +2,62 @@ import CodeBlock_Custom from "@/registry/locals/CodeBlock_Custom";
 import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
 import { ALargeSmall, Type } from "lucide-react";
 
-const usagecode = `import ScrollFloat from './ScrollFloat';
+const usagecode = `// import the TextFade component
 
-<ScrollFloat
-    animationDuration={1}
-    ease='back.inOut(2)'
-    scrollStart='center bottom+=50%'
-    scrollEnd='bottom bottom-=40%'
-    stagger={0.03}
->
-    React Bits  
-</ScrollFloat>`
+import TextFade from './TextFade';
+
+// Example 1 code (check preview section)
+<TextFade
+    text="Text Fade Animation Preview Examples (keep scrolling)"
+/>
+
+
+// Example 2 code (check preview section)
+<TextFade
+    style={{fontSize: "20px"}}
+    playInView
+    text="This text automatically animates each time it's scrolled to view from the bottom"
+/>
+
+
+// Example 3 code (check preview section)
+<TextFade
+    playOnScroll
+    text="This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed."
+/>
+
+
+// Example 4 code (check preview section)
+<TextFade
+    text="Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation."
+    progression="line"
+    playOnScroll={true}
+    scroll_con={'.scrollable_parent_container'}  
+    //The container element is scrollable, so i watch it through it's class name
+    //don't use the scroll_con prop if you don't have any scrollable parent element to watch, it will default to the window scrollable element
+/>
+
+
+// Example 5 code (check preview section)
+<TextFade
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    scroll_con={'.component-preview-container'}
+    playOnScroll
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+/>
+
+// timeline prop
+const tl = gsap.timeline({delay: 1.5});
+<TextFade
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    scroll_con={'.component-preview-container'}
+    playOnScroll
+    timeline={tl}
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+/>
+`
 
 const ts_tw = `import Masonry from './Masonry';
 
@@ -276,8 +321,8 @@ export const texts_fade = {
         {
             name: "delay",
             type: "number",
-            range: "true | false",
-            description: "How long you want to be delayed the animation before playing",
+            // range: "true | false",
+            description: "How long you want to be delayed the animation before playing (in seconds)",
             // more_des: "Many more explanation to help understand better",
             // value: true
         },
@@ -309,8 +354,8 @@ timeline={tl}
             name: "extendAnimation",
             type: "object",
             range: <p>sample: {`{color: ["blue", "red"]}`}</p>,
-            description: "Get more add more animations to the existing one",
-            more_des: "Many more explanation to help understand better",
+            description: "Add more styles to the animation.",
+            more_des: "Extend the animation beyond the current state, you can animate any css style, primarily any style you can animate using gsap also works here (check the usage section for example)",
             value: true
         },
     ]
