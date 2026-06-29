@@ -14,6 +14,7 @@ interface Props {
     animateOnScroll?: boolean,
     scrub?: boolean,
     // speed?: any
+    scroll_con?:string
 }
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
@@ -26,6 +27,7 @@ function TextFade(props: Props) {
         duration=0.65,
         animateOnScroll=false,
         scrub=false,
+        scroll_con,
     } = props
 
     const stagger = speed=="fast"?0.02:
@@ -36,6 +38,8 @@ function TextFade(props: Props) {
     function animator_func(){
         const el = containerRef.current
         if(!el) return
+        
+        const scroller = scroll_con?document.querySelector(`${scroll_con}`):null
         
         const splitRef = SplitText.create(el, {
             type: "lines,words,chars",
@@ -49,9 +53,9 @@ function TextFade(props: Props) {
 
         // initialize styles of each character
         gsap.set(chars, {
-            x: 100,
+            // x: 100,
             opacity: 0,
-            skewX: 70
+            // skewX: 70
         })
 
         // set each character in a line into an array
@@ -72,9 +76,9 @@ function TextFade(props: Props) {
                 tl.to(
                     char,
                     {
-                        x: 0,
+                        // x: 0,
                         opacity: 1,
-                        skewX: 0,
+                        // skewX: 0,
                         color: "yellow",
                         ease: "power3.out"
                     },
@@ -92,12 +96,13 @@ function TextFade(props: Props) {
             ScrollTrigger.create({
                 trigger: el,
                 start: "top 90%",
+                scroller,
                 end: "top 45%",
                 scrub: true,
                 animation: tl
             })
 
-            return splitRef.revert
+            return () => splitRef.revert();
         }
         
         if(animateOnScroll){
@@ -107,11 +112,12 @@ function TextFade(props: Props) {
             ScrollTrigger.create({
                 trigger: el,
                 start: "top 90%",
+                scroller,
                 onEnter: ()=>tl.restart(),
                 onLeaveBack: ()=>tl.pause(),
             })
 
-            return splitRef.revert
+            return () => splitRef.revert();
         }
 
 
@@ -119,11 +125,17 @@ function TextFade(props: Props) {
         const tl = gsap.timeline({delay})
         animate(tl)
 
-        return splitRef.revert
+        return () => splitRef.revert();
     }
 
     useEffect(()=>{
-        return animator_func()
+        try {
+            const anim = animator_func()
+            return anim
+        } catch(e){
+            console.log(e)
+            console.log("error happened here")
+        }
     }, [])
 
 

@@ -1,3 +1,4 @@
+import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
 import { ALargeSmall, Type } from "lucide-react";
 
 const usagecode = `import ScrollFloat from './ScrollFloat';
@@ -185,6 +186,8 @@ export const texts_fade = {
             }
         }
     },
+    // preview: ()=><Text_Fade_Preview />,
+    preview: Text_Fade_Preview,
     props: [
         {
             name: "animationDuration",

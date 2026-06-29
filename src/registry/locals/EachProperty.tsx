@@ -29,7 +29,7 @@ function EachProperty(props: Props) {
         
         <div className='w-full darkbg h-auto px-3 py-2 my-5 rounded-[5px]'>
             <div className='flex justify-between items-center overpass'>
-                <p className='text-[12px] font-bold text-green-500'>{item.name}</p>
+                <p className='text-[14px] font-bold text-green-500'>{item.name}</p>
                 <p className='text-[9px]'>{item.type}</p>
             </div>
 
@@ -63,7 +63,7 @@ function EachProperty(props: Props) {
                 null
             }
 
-            <div className='mt-2 mb-0 bg-[#504949] w-full h-auto rounded-[25px]'>
+            {/* <div className='mt-2 mb-0 bg-[#504949] w-full h-auto rounded-[25px]'>
                 {
                     item.type=="number"?
                     <Custom_Slider />:
@@ -85,7 +85,7 @@ function EachProperty(props: Props) {
                     />:
                     null
                 }
-                </div>
+            </div> */}
         </div>
     )
 }

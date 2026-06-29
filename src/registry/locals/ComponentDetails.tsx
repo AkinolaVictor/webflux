@@ -58,7 +58,7 @@ function ComponentDetails(props: Props) {
             </div>
         )
     }
-
+    const ThisPreview = comp_data.preview
     return (
         <div>
             
@@ -118,8 +118,12 @@ function ComponentDetails(props: Props) {
                             null
                         }
                     </div>
-                    <div className={`w-full h-full min-h-110 bg-amber-600s rounded-2xl mt-5 border border-[#757070]`}>
-
+                    <div className={`component-preview-container w-full h-120 bg-amber-600s rounded-2xl_e mt-5 border border-[#757070] overflow-x-hidden overflow-y-auto`}>
+                        {
+                            ThisPreview?
+                            <ThisPreview />:
+                            null
+                        }
                     </div>
                 </div>:
                 viewState=="code"?

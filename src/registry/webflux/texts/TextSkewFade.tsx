@@ -4,7 +4,7 @@ import { SplitText } from 'gsap/SplitText';
 import React, { ReactElement, RefObject, useEffect, useRef } from 'react'
 
 interface Props {
-    children: ReactElement<{
+    children?: ReactElement<{
         className?: string;
         ref?: React.Ref<HTMLElement>;
     }>,
@@ -14,6 +14,8 @@ interface Props {
     animateOnScroll?: boolean,
     scrub?: boolean,
     // speed?: any
+    text: string,
+    scroll_con?:string
 }
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
@@ -26,17 +28,22 @@ function TextSkewFade(props: Props) {
         duration=0.65,
         animateOnScroll=false,
         scrub=false,
+        text,
+        scroll_con
     } = props
 
     const stagger = speed=="fast"?0.02:
                             speed=="slow"?0.008:
                             0.05
-    const containerRef: RefObject<HTMLElement | null> = useRef<HTMLElement>(null)
+    // const containerRef: RefObject<HTMLElement | null> = useRef<HTMLElement>(null)
+    const containerRef = useRef<HTMLParagraphElement | null>(null);
 
     function animator_func(){
         const el = containerRef.current
         if(!el) return
-        
+
+        const scroller = scroll_con?document.querySelector(`${scroll_con}`):null
+
         const splitRef = SplitText.create(el, {
             type: "lines,words,chars",
             linesClass: "line",
@@ -44,6 +51,8 @@ function TextSkewFade(props: Props) {
             charsClass: "char",
             autoSplit: true,
         })
+
+        // here is the error from the code above: Cannot read properties of undefined (reading 'isSplit')
 
         const {chars, lines} = splitRef
 
@@ -91,13 +100,14 @@ function TextSkewFade(props: Props) {
 
             ScrollTrigger.create({
                 trigger: el,
+                scroller,
                 start: "top 90%",
                 end: "top 45%",
                 scrub: true,
                 animation: tl
             })
 
-            return splitRef.revert
+            return () => splitRef.revert();
         }
         
         if(animateOnScroll){
@@ -106,12 +116,13 @@ function TextSkewFade(props: Props) {
 
             ScrollTrigger.create({
                 trigger: el,
+                scroller,
                 start: "top 90%",
                 onEnter: ()=>tl.restart(),
                 onLeaveBack: ()=>tl.pause(),
             })
 
-            return splitRef.revert
+            return () => splitRef.revert();
         }
 
 
@@ -119,21 +130,29 @@ function TextSkewFade(props: Props) {
         const tl = gsap.timeline({delay})
         animate(tl)
 
-        return splitRef.revert
+        return () => splitRef.revert();
     }
 
     useEffect(()=>{
-        return animator_func()
+        try {
+            const anim = animator_func()
+            return anim
+        } catch(e){
+            console.log(e)
+            console.log("error happened here")
+        }
     }, [])
 
-
-    return React.cloneElement(children, {
-        ref: containerRef,
-        className: [
-            children.props.className, 
-            "animated-header"
-        ].filter(Boolean).join(" ")
-    })
+    return (
+        <p ref={containerRef} className='animated-header this_parag'>{text}</p>
+    )
+    // return React.cloneElement(children, {
+    //     ref: containerRef,
+    //     className: [
+    //         children.props.className, 
+    //         "animated-header"
+    //     ].filter(Boolean).join(" ")
+    // })
 }
 
 export default TextSkewFade
