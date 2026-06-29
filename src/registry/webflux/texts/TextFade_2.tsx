@@ -39,6 +39,7 @@ function TextFade_2(props: Props) {
     } = props
     const containerRef = useRef<HTMLParagraphElement | null>(null);
     const [ready, setReady] = useState(false)
+    const [screenResize, setScreenResize] = useState(0)
     
     function animator(){
         const el = containerRef.current
@@ -213,10 +214,20 @@ function TextFade_2(props: Props) {
         return () => splitRef.revert();
     }
 
+    function updateScreenResize(){
+        window.addEventListener("resize", ()=>{
+            setScreenResize((prev)=>prev+1)
+        })
+    }
+    
+    useEffect(()=>{
+        updateScreenResize()
+    }, [])
+
     useEffect(()=>{
         const anim = animator()
         return anim
-    }, [ready])
+    }, [ready, screenResize])
 
 
     return (
