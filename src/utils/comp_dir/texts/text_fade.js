@@ -48,6 +48,24 @@ import TextFade from './TextFade';
 />
 
 
+// extendAnimation example
+<TextFade
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    scroll_con={'.component-preview-container'}
+    playOnScroll
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+    extendAnimation={{
+        // template
+        // style: [old_value, new_value]
+        color: ["blue", "yellow"],
+        x: [100, 0],
+        skewX: [70, 0],
+        opacity: [100, 100],
+    }}
+/>
+
+
 // timeline prop
 const tl = gsap.timeline({delay: 1.5});
 <TextFade
