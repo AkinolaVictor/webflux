@@ -1,4 +1,4 @@
-import TextFade from '@/registry/webflux/texts/textprogression/TextFade'
+import TextFade from '@/registry/webflux/texts/TextFade'
 // import TextFade_2 from '@/registry/webflux/texts/TextFade_2'
 import TextRevealByHeightOverlay from '@/registry/webflux/texts/TextRevealByHeightOverlay'
 import TextSkewFade from '@/registry/webflux/texts/TextSkewFade'
@@ -19,7 +19,7 @@ function Text_Fade_Preview(props: Props) {
 
                 <TextFade
                     // progression="char"
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     className='text-[25px] font-bold text-center'
                     text={`
                         Text Fade Animation Preview Examples (keep scrolling)
@@ -33,7 +33,7 @@ function Text_Fade_Preview(props: Props) {
                 </div>
                 <TextFade
                     progression="char"
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     className='text-[20px]'
                     style={{color: "yellow"}}
                     playInView
@@ -50,7 +50,7 @@ function Text_Fade_Preview(props: Props) {
                 </div>
                 <TextFade
                     progression="char"
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     className='w11:text-[20px]'
                     playOnScroll
                     text={`
@@ -66,7 +66,7 @@ function Text_Fade_Preview(props: Props) {
                 </div>
                 <TextFade
                     progression="line"
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     playOnScroll
                     className='w11:text-[20px]'
                     text={`
@@ -81,7 +81,7 @@ function Text_Fade_Preview(props: Props) {
                 </div>
                 <TextFade
                     progression="char_line"
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     playOnScroll
                     className='w11:text-[20px]'
                     text={`
@@ -96,7 +96,7 @@ function Text_Fade_Preview(props: Props) {
                 </div>
                 <TextFade
                     className='text-[20px]'
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     playInView
                     text={`
                         The End
@@ -107,7 +107,7 @@ function Text_Fade_Preview(props: Props) {
             {/* <div className='w-full h-full flex flex-col justify-center items-center relative p-10'>
                 <TextFade
                     scrub
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     children={<p className=''>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quos natus tenetur sunt? Magni tempore modi consequuntur error, qui, similique fuga assumenda velit corrupti impedit reiciendis aperiam nisi ipsum, dolorum veniam quaerat ut laborum reprehenderit temporibus? Expedita, dicta sequi quod nam inventore dolorum maiore
                     </p>}
@@ -117,13 +117,13 @@ function Text_Fade_Preview(props: Props) {
             <div className='h-full w-full flex flex-col justify-center items-center'>
                 <TextSkewFade
                     scrub
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     text='This is what you see when scrub is true'
                 />
             </div>
             <div className='w-full h-full flex flex-col justify-center items-center relative p-10'>
                 <TextRevealByHeightOverlay 
-                    scroll_con={'.component-preview-container'}
+                    // scrollingElement={'.component-preview-container'}
                     text={`
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni sit enim obcaecati eligendi in, aliquam quaerat atque quas ipsa minima fugiat quam quis temporibus iste? Exercitationem nulla quod doloribus ab. amet consectetur adipisicing elit. Magni sit enim obcaecati eligendi in, aliquam quaerat atque quas
                     `}

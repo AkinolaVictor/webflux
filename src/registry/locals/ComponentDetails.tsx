@@ -31,6 +31,7 @@ function ComponentDetails(props: Props) {
     const [ts_cs, set_ts_cs] = useState("")
     const [js_tw, set_js_tw] = useState("")
     const [js_cs, set_js_cs] = useState("")
+    const [usage, setUsage] = useState("")
     const allCodes:any = {
         ts_tw,
         ts_cs,
@@ -69,6 +70,7 @@ function ComponentDetails(props: Props) {
         comp_data?.setup.rawcode.codes["ts_cs"](set_ts_cs)
         comp_data?.setup.rawcode.codes["js_tw"](set_js_tw)
         comp_data?.setup.rawcode.codes["js_cs"](set_js_cs)
+        comp_data?.setup.cli.usage(setUsage)
     }, [comp_data])
 
     if(comp_data === null) {
@@ -227,7 +229,8 @@ function ComponentDetails(props: Props) {
                                         showLineNumbers
                                         // useInlineStyles
                                     >
-                                    {comp_data?.setup.cli.usage}
+                                    {/* {comp_data?.setup.cli.usage} */}
+                                    {usage}
                                     </SyntaxHighlighter>
 
                                 </div>

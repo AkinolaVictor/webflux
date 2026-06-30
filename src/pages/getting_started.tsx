@@ -132,7 +132,7 @@ function Getting_started(props: Props) {
                         <div className=' w-full flex flex-col gap-3.5 justify-start items-start mb-10'>
                             <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Add Components</p>
                             <p className='px-4'>Run the  <code className='bg-[#262626] p-1 rounded-[5px]'>add</code> command to add a component to your project.</p>
-                            <p className='px-4 text-[11px]'>For example, the <code className='p-1 rounded-[5px] darkbg mx-1'>ScrollFloat</code> component</p>
+                            <p className='px-4 text-[11px]'>For example, the <code className='p-1 rounded-[5px] darkbg mx-1'>TextFade</code> component</p>
                             
                             
                             <Codeblock 
@@ -140,7 +140,7 @@ function Getting_started(props: Props) {
                                 data={[
                                     {
                                         name: "npm",
-                                        code: " npx shadcn@latest add @https://reactbits.dev/r/ScrollFloat-JS-TW"
+                                        code: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFade.json"
                                     }
                                 ]}
                             />

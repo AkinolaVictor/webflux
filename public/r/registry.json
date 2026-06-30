@@ -4,8 +4,22 @@
     "homepage": "https://webflux-rouge.vercel.app/",
     "items": [
         {
-            "name": "TextFade",
+            "name": "TextEngine",
             "type": "registry:component",
+            "title": "Progressive Text Animation Engine",
+            "description": "The engine to be used to build animation that progress in chronological order.",
+            "files": [
+                {
+                    "path": "src/registry/webflux/TextEngine.tsx",
+                    "type": "registry:component"
+                }
+            ],
+            "dependencies": ["react", "gsap"],
+            "registryDependencies": []
+        },
+        {
+            "name": "TextFade",
+            "type": "registry:ui",
             "title": "Text Fade",
             "description": "A basic text animation component",
             "files": [
@@ -15,7 +29,7 @@
                 }
             ],
             "dependencies": ["react", "gsap"],
-            "registryDependencies": []
+            "registryDependencies": ["http://localhost:3000/r/TextEngine.json"]
         },
         {
             "name": "TextRevealByHeightOverlay",

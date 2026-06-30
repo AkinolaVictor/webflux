@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export interface TextEngineTypes {
     text: string,
-    scroll_con?: string,
+    scrollingElement?: string,
     progression?: "char" | "word" | "line" | "char_line" | "word_line",
     style?: any,
     className?: string,
@@ -28,7 +28,7 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 export default function TextEngine(props: TextEngineTypes) {
     const {
         text, 
-        scroll_con,
+        scrollingElement,
         progression="char",
         style,
         className,
@@ -50,7 +50,22 @@ export default function TextEngine(props: TextEngineTypes) {
         const el = containerRef.current;
         if(!el) return;
 
-        const scroller = scroll_con?document.querySelector(`${scroll_con}`):null;
+        // declare scrolling element
+        function findScrollingElement(elem:string){
+            let parent = document.querySelector(elem);
+            
+            while(parent) {
+                const {overflowY} = getComputedStyle(parent)
+                if((overflowY === "auto" || overflowY === "scroll") && (parent.scrollHeight > parent.clientHeight)){
+                    return parent;
+                }
+                parent = parent.parentElement;
+            }
+
+            return document.scrollingElement;
+        };
+
+        const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".fade_textation_x");
 
         const splitRef = SplitText.create(el, {
             type: "lines,words,chars",
@@ -238,7 +253,7 @@ export default function TextEngine(props: TextEngineTypes) {
 
     return (
         <p 
-            className={`${className}`}
+            className={`fade_textation_x ${className}`}
             style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
         >
             {text || children}

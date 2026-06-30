@@ -2,7 +2,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import React, { Children, useEffect, useRef, useState } from 'react'
-import { TextEngineTypes } from '../engines/TextEngine';
+import { TextEngineTypes } from '../TextEngine';
+// import { TextEngineTypes } from '../engines_js/TextEngine';
+
 
 // interface Props {
 //     text: string,
@@ -25,7 +27,7 @@ gsap.registerPlugin(SplitText, ScrollTrigger)
 function TextFade_2(props: TextEngineTypes) {
     const {
         text, 
-        scroll_con,
+        scrollingElement,
         progression="char",
         style,
         className,
@@ -46,7 +48,7 @@ function TextFade_2(props: TextEngineTypes) {
         const el = containerRef.current
         if(!el) return
 
-        const scroller = scroll_con?document.querySelector(`${scroll_con}`):null
+        const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):null
 
         const splitRef = SplitText.create(el, {
             type: "lines,words,chars",
