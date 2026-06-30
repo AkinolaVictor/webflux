@@ -7,7 +7,6 @@ import { TextEngineProps } from "../../engineProps/TextEngineProps"
 async function getCode(path, func){
     const res = await fetch(path)
     const text = await res.text()
-    console.log({text})
     if(func) func(text)
     return text
 }

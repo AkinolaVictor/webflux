@@ -72,16 +72,11 @@ export default function TextEngine(props: TextEngineTypes) {
             autoSplit: true,
         })
         const {chars, lines, words} = splitRef;
-        
-        gsap.set(progression_state().set, {
-            opacity: 0,
-            ...build_extend_animation(defaultAnimation, "from"),
-            ...build_extend_animation(extendAnimation, "from")
-        });
+        const progression_data = progression_state()
 
         // depending on the type of animation progression the developer wants
         // return elements that must be looped through to create the animation
-        function progression_state () {
+        function progression_state() {
             
             let anim2:any = chars
             if(progression === "char_line") {
@@ -158,16 +153,21 @@ export default function TextEngine(props: TextEngineTypes) {
             
             return all;
         }
+        
+        gsap.set(progression_data.set, {
+            opacity: 0,
+            ...build_extend_animation(defaultAnimation, "from"),
+            ...build_extend_animation(extendAnimation, "from")
+        });
 
         const paused = (playOnScroll || playInView)?true:false;
         const tl = timeline || gsap.timeline({paused, delay});
-
         const anim = (tl:any)=>{
             if(!tl) return null;
             
             // loop through each line and apply styles to each character sequentially
-            progression_state().animate.forEach((charz:any, index:number)=>{
-                const check_progression = progression==="char_line" || progression==="word_line";
+            progression_data.animate.forEach((charz:any, index:number)=>{
+                let check_progression = progression==="char_line" || progression==="word_line";
                 let char = check_progression ? charz.char : charz;
                 const charIndexInLine = check_progression ? charz.charIndexInLine : index;
 
@@ -179,7 +179,7 @@ export default function TextEngine(props: TextEngineTypes) {
                         ...build_extend_animation(defaultAnimation, "to"),
                         ...build_extend_animation(extendAnimation, "to")
                     },
-                    charIndexInLine*progression_state().speed_0 //use for speed (fast or slow)
+                    charIndexInLine*progression_data.speed_0 //use for speed (fast or slow)
                 );
             });
             
@@ -200,6 +200,8 @@ export default function TextEngine(props: TextEngineTypes) {
             return {};
         }
 
+        const moreScroll = moreScrollTrigger()
+
         if(playOnScroll){
             ScrollTrigger.create({
                 trigger: el,
@@ -208,7 +210,7 @@ export default function TextEngine(props: TextEngineTypes) {
                 end: "top 35%",
                 scrub: playOnScroll,
                 animation: tl,
-                ...moreScrollTrigger(),
+                ...moreScroll,
             });
 
         } else if (playInView){
@@ -218,7 +220,7 @@ export default function TextEngine(props: TextEngineTypes) {
                 start: "top bottom",
                 onEnter: ()=>tl.restart(),
                 onLeaveBack: ()=>tl.pause(),
-                ...moreScrollTrigger(),
+                ...moreScroll,
             });
         };
 
