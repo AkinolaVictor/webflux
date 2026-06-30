@@ -35,6 +35,7 @@ function Text_Fade_Preview(props: Props) {
                     progression="char"
                     scroll_con={'.component-preview-container'}
                     className='text-[20px]'
+                    style={{color: "yellow"}}
                     playInView
                     text={`
                         This text automatically animates each time it's scrolled to view from the bottom
@@ -83,14 +84,6 @@ function Text_Fade_Preview(props: Props) {
                     scroll_con={'.component-preview-container'}
                     playOnScroll
                     className='w11:text-[20px]'
-                    // speed={9}
-                    // extendAnimation={{
-                    //     color: ["blue", "yellow"],
-                    //     x: [100, 0],
-                    //     y: [100, 0],
-                    //     skewX: [70, 0],
-                    //     // opacity: [100, 100],
-                    // }}
                     text={`
                         Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
                     `}

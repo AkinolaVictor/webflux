@@ -27,6 +27,17 @@ function ComponentDetails(props: Props) {
         description: "This is also fully compatible with NextJs.",
         value: "rt"
     })
+    const [ts_tw, set_ts_tw] = useState("")
+    const [ts_cs, set_ts_cs] = useState("")
+    const [js_tw, set_js_tw] = useState("")
+    const [js_cs, set_js_cs] = useState("")
+    const allCodes:any = {
+        ts_tw,
+        ts_cs,
+        js_tw,
+        js_cs
+    }
+
     const [codeState, setCodeState] = useState("cli")
     const [language, setLanguage] = useState({
         title: "Typescript",
@@ -43,13 +54,22 @@ function ComponentDetails(props: Props) {
     // const [comp_data, setCompData] = useState<any>()
     // console.log(path)
     const comp_data:any = get_component_data(path)
-    useEffect(()=>{
-        // const resp = get_component_data(path)
-        // setCompData(resp)
-    }, [path])
+    // useEffect(()=>{
+    //     // const resp = get_component_data(path)
+    //     // setCompData(resp)
+    // }, [path])
 
     // console.log(get_data())
     const showcode = `${language.value}_${styling.value}`
+    
+    useEffect(()=>{
+        if(!comp_data) return
+        
+        comp_data?.setup.rawcode.codes["ts_tw"](set_ts_tw)
+        comp_data?.setup.rawcode.codes["ts_cs"](set_ts_cs)
+        comp_data?.setup.rawcode.codes["js_tw"](set_js_tw)
+        comp_data?.setup.rawcode.codes["js_cs"](set_js_cs)
+    }, [comp_data])
 
     if(comp_data === null) {
         return (
@@ -292,7 +312,8 @@ function ComponentDetails(props: Props) {
                                         // useInlineStyles
                                     >
                                     {/* {sample_code} */}
-                                    {comp_data?.setup.rawcode.codes[showcode]}
+                                    {/* {comp_data?.setup.rawcode.codes[showcode]} */}
+                                    {allCodes[showcode]}
                                     </SyntaxHighlighter>
 
                                 </div>

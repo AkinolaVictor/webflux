@@ -2,11 +2,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import React, { ReactElement, RefObject, useEffect, useRef } from 'react'
-import TextEngine from '../../engines/TextEngine';
-import { TextProgression } from '../../types/textProgession.types';
+import TextEngine, { TextEngineTypes } from '../../engines/TextEngine';
 
 
-function TextFade(props: TextProgression) {
+function TextFade(props: TextEngineTypes) {
 
 
     return (

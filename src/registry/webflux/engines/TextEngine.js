@@ -6,24 +6,7 @@ import CodeBlock_Custom from '@/registry/locals/CodeBlock_Custom';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export interface TextEngineTypes {
-    text: string,
-    scroll_con?: string,
-    progression?: "char" | "word" | "line" | "char_line" | "word_line",
-    style?: any,
-    className?: string,
-    children?: string,
-    speed?: number,
-    playOnScroll?: boolean | number | undefined,
-    playInView?: boolean,
-    delay?: number,
-    timeline?: any,
-    gsapScrollTrigger?: any,
-    extendAnimation?: any,
-    defaultAnimation?: any
-}
-
-export default function TextEngine(props: TextEngineTypes) {
+export default function TextEngine(props) {
     const {
         text, 
         scroll_con,
@@ -40,7 +23,7 @@ export default function TextEngine(props: TextEngineTypes) {
         defaultAnimation,
         extendAnimation,
     } = props
-    const containerRef = useRef<HTMLParagraphElement | null>(null);
+    const containerRef = useRef(null);
     const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
     
@@ -92,7 +75,7 @@ export default function TextEngine(props: TextEngineTypes) {
                 word_animate = wordMeta;
             }
 
-            const anim:any = (
+            const anim = (
                 progression=="char"?chars:
                 progression=="word"?words:
                 progression=="line"?lines:
@@ -124,7 +107,7 @@ export default function TextEngine(props: TextEngineTypes) {
 
 
         // convert extend animation input to acceptable css styles for the engine
-        function build_extend_animation(animation: object, which:"from" | "to"){
+        function build_extend_animation(animation, which){
             const obj = typeof(animation)=="object"?
                         animation:
                         {};
@@ -134,11 +117,11 @@ export default function TextEngine(props: TextEngineTypes) {
                 return {key, val};
             });
     
-            const all:any = {};
+            const all = {};
     
             for(let i=0; i<input_obj.length; i++){
                 const key = input_obj[i].key;
-                const val: any = input_obj[i].val;
+                const val = input_obj[i].val;
                 const which_val = which=="from"?val[0]:
                                 which=="to"?val[1]:
                                 "";
@@ -151,11 +134,11 @@ export default function TextEngine(props: TextEngineTypes) {
         const paused = (playOnScroll || playInView)?true:false;
         const tl = timeline || gsap.timeline({paused, delay});
 
-        const anim = (tl:any)=>{
+        const anim = (tl)=>{
             if(!tl) return null;
             
             // loop through each line and apply styles to each character sequentially
-            progression_state().animate.forEach((charz:any, index:number)=>{
+            progression_state().animate.forEach((charz, index)=>{
                 const check_progression = progression==="char_line" || progression==="word_line";
                 let char = check_progression ? charz.char : charz;
                 const charIndexInLine = check_progression ? charz.charIndexInLine : index;
