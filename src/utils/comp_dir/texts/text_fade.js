@@ -140,119 +140,6 @@ const ts_cs = (setState)=>getCode("/codes/text_fade/text_fade_ts_cs.txt", setSta
 const js_tw = (setState)=>getCode("/codes/text_fade/text_fade_js_tw.txt", setState)
 const js_cs = (setState)=>getCode("/codes/text_fade/text_fade_js_cs.txt", setState)
 
-// const ts_cs = `import Masonry from './Masonry';
-
-// const items = [
-//     {
-//         id: "1",
-//         img: "https://picsum.photos/id/1015/600/900?grayscale",
-//         url: "https://example.com/one",
-//         height: 400,
-//     },
-//     {
-//         id: "2",
-//         img: "https://picsum.photos/id/1011/600/750?grayscale",
-//         url: "https://example.com/two",
-//         height: 250,
-//     },
-//     {
-//         id: "3",
-//         img: "https://picsum.photos/id/1020/600/800?grayscale",
-//         url: "https://example.com/three",
-//         height: 600,
-//     },
-//     // ... more items
-// ];
-
-
-// <Masonry
-//     items={items}
-//     ease="power3.out"
-//     duration={0.6}
-//     stagger={0.05}
-//     animateFrom="bottom"
-//     scaleOnHover
-//     hoverScale={0.95}
-//     blurToFocus
-//     colorShiftOnHover={false}
-// />`
-
-// const js_tw = `import Masonry from './Masonry';
-
-// const items = [
-//     {
-//         id: "1",
-//         img: "https://picsum.photos/id/1015/600/900?grayscale",
-//         url: "https://example.com/one",
-//         height: 400,
-//     },
-//     {
-//         id: "2",
-//         img: "https://picsum.photos/id/1011/600/750?grayscale",
-//         url: "https://example.com/two",
-//         height: 250,
-//     },
-//     {
-//         id: "3",
-//         img: "https://picsum.photos/id/1020/600/800?grayscale",
-//         url: "https://example.com/three",
-//         height: 600,
-//     },
-//     // ... more items
-// ];
-
-
-// <Masonry
-//     items={items}
-//     ease="power3.out"
-//     duration={0.6}
-//     stagger={0.05}
-//     animateFrom="bottom"
-//     scaleOnHover
-//     hoverScale={0.95}
-//     blurToFocus
-//     colorShiftOnHover={false}
-// />`
-
-// const js_cs = `import Masonry from './Masonry';
-
-// const items = [
-//     {
-//         id: "1",
-//         img: "https://picsum.photos/id/1015/600/900?grayscale",
-//         url: "https://example.com/one",
-//         height: 400,
-//     },
-//     {
-//         id: "2",
-//         img: "https://picsum.photos/id/1011/600/750?grayscale",
-//         url: "https://example.com/two",
-//         height: 250,
-//     },
-//     {
-//         id: "3",
-//         img: "https://picsum.photos/id/1020/600/800?grayscale",
-//         url: "https://example.com/three",
-//         height: 600,
-//     },
-//     // ... more items
-// ];
-
-
-// <Masonry
-//     items={items}
-//     ease="power3.out"
-//     duration={0.6}
-//     stagger={0.05}
-//     animateFrom="bottom"
-//     scaleOnHover
-//     hoverScale={0.95}
-//     blurToFocus
-//     colorShiftOnHover={false}
-// />`
-
-
-
 export const texts_fade = {
     title: "Fade",
     href: "/components/text_fade",
@@ -267,7 +154,7 @@ export const texts_fade = {
             usage: usagecode
         },
         rawcode: {
-            // dependencies: "npm install gsap",
+            dependencies: "npm install gsap",
             codes: {
                 ts_tw,
                 ts_cs,
