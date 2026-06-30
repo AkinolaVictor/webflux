@@ -52,6 +52,13 @@ export const TextEngineProps = [
         more_des: "A good range is between 0.001 and 2, but you can go below and above that",
     },
     {
+        name: "useHtml",
+        type: "string",
+        range: "div | span",
+        description: "Instead of using the default <p> tag, you can choose to use the <div> tag or the <span> tag",
+        // more_des: "A good range is between 0.001 and 2, but you can go below and above that",
+    },
+    {
         name: "playOnScroll",
         type: "boolean",
         range: "default is false",

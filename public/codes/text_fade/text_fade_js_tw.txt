@@ -2,30 +2,30 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import React, { useEffect, useRef, useState } from 'react';
-import CodeBlock_Custom from '@/registry/locals/CodeBlock_Custom';
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export default function TextEngine(props) {
-    const {
-        text, 
-        scrollingElement,
-        progression="char",
-        style,
-        className,
-        children,
-        playOnScroll=false,
-        playInView=false,
-        delay=0,
-        timeline=undefined,
-        speed,
-        gsapScrollTrigger,
-        defaultAnimation,
-        extendAnimation,
-    } = props;
+export default function TextEngine({
+    text, 
+    scrollingElement,
+    progression="char",
+    style,
+    className,
+    children,
+    playOnScroll=false,
+    playInView=false,
+    delay=0,
+    timeline=undefined,
+    speed,
+    gsapScrollTrigger,
+    defaultAnimation,
+    extendAnimation,
+    useHtml
+}) {
+
     const containerRef = useRef(null);
-    const [ready, setReady] = useState(false);
-    const [screenResize, setScreenResize] = useState(0);
+    const [ready, setReady] = useState(false)
+    const [screenResize, setScreenResize] = useState(0)
     
     function initi_animation(){
         const el = containerRef.current;
@@ -33,18 +33,18 @@ export default function TextEngine(props) {
 
         // declare scrolling element
         function findScrollingElement(elem){
-            let parent = document.querySelector(elem);
+            let parent = document.querySelector(elem)
             
             while(parent) {
                 const {overflowY} = getComputedStyle(parent)
                 if((overflowY === "auto" || overflowY === "scroll") && (parent.scrollHeight > parent.clientHeight)){
-                    return parent;
+                    return parent
                 }
-                parent = parent.parentElement;
+                parent = parent.parentElement
             }
 
-            return document.scrollingElement;
-        };
+            return document.scrollingElement
+        }
 
         const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".fade_textation_x");
 
@@ -56,48 +56,40 @@ export default function TextEngine(props) {
             autoSplit: true,
         })
         const {chars, lines, words} = splitRef;
-        
-        gsap.set(progression_state().set, {
-            opacity: 0,
-            ...build_extend_animation(defaultAnimation, "from"),
-            ...build_extend_animation(extendAnimation, "from")
-        });
+        const progression_data = progression_state()
 
         // depending on the type of animation progression the developer wants
         // return elements that must be looped through to create the animation
-        function progression_state () {
-            let char_animate, word_animate;
-
-            // animate characters and line together
+        function progression_state() {
+            
+            let anim2 = chars
             if(progression === "char_line") {
+                // animate characters and line together
                 const charMeta = lines.flatMap((line)=>{
                     const lineChars = chars.filter((c)=>{
                         return line.contains(c);
                     });
                     return lineChars.map((char, charIndexInLine)=>({char, charIndexInLine}));
                 });
-                char_animate = charMeta;
-            };
-
-            // animate words and line together
-            if(progression === "word_line") {
+                anim2 = charMeta
+            } else if(progression === "word_line") {
+                // animate words and line together
                 const wordMeta = lines.flatMap((line, index1)=>{
                     const lineWords = words.filter((c)=>{
                         return line.contains(c);
                     });
                     return lineWords.map((char, charIndexInLine)=>({char, charIndexInLine}));
                 });
-                word_animate = wordMeta;
+                anim2 = wordMeta
+            } else {
+                anim2 = (
+                    progression=="char"?chars:
+                    progression=="word"?words:
+                    progression=="line"?lines:
+                    chars
+                );
             }
 
-            const anim = (
-                progression=="char"?chars:
-                progression=="word"?words:
-                progression=="line"?lines:
-                progression=="char_line"?char_animate:
-                progression=="word_line"?word_animate:
-                chars
-            );
 
             return {
                 set: (
@@ -108,7 +100,7 @@ export default function TextEngine(props) {
                     progression=="word_line"?words:    //animate words with line progressively
                     chars
                 ),
-                animate: anim,
+                animate: anim2,
                 speed_0: speed || (
                     progression=="char"?(playOnScroll?0.005:0.1):
                     progression=="word"?0.35:
@@ -145,16 +137,21 @@ export default function TextEngine(props) {
             
             return all;
         }
+        
+        gsap.set(progression_data.set, {
+            opacity: 0,
+            ...build_extend_animation(defaultAnimation, "from"),
+            ...build_extend_animation(extendAnimation, "from")
+        });
 
         const paused = (playOnScroll || playInView)?true:false;
         const tl = timeline || gsap.timeline({paused, delay});
-
         const anim = (tl)=>{
             if(!tl) return null;
             
             // loop through each line and apply styles to each character sequentially
-            progression_state().animate.forEach((charz, index)=>{
-                const check_progression = progression==="char_line" || progression==="word_line";
+            progression_data.animate.forEach((charz, index)=>{
+                let check_progression = progression==="char_line" || progression==="word_line";
                 let char = check_progression ? charz.char : charz;
                 const charIndexInLine = check_progression ? charz.charIndexInLine : index;
 
@@ -166,7 +163,7 @@ export default function TextEngine(props) {
                         ...build_extend_animation(defaultAnimation, "to"),
                         ...build_extend_animation(extendAnimation, "to")
                     },
-                    charIndexInLine*progression_state().speed_0 //use for speed (fast or slow)
+                    charIndexInLine*progression_data.speed_0 //use for speed (fast or slow)
                 );
             });
             
@@ -187,6 +184,8 @@ export default function TextEngine(props) {
             return {};
         }
 
+        const moreScroll = moreScrollTrigger()
+
         if(playOnScroll){
             ScrollTrigger.create({
                 trigger: el,
@@ -195,7 +194,7 @@ export default function TextEngine(props) {
                 end: "top 35%",
                 scrub: playOnScroll,
                 animation: tl,
-                ...moreScrollTrigger(),
+                ...moreScroll,
             });
 
         } else if (playInView){
@@ -205,7 +204,7 @@ export default function TextEngine(props) {
                 start: "top bottom",
                 onEnter: ()=>tl.restart(),
                 onLeaveBack: ()=>tl.pause(),
-                ...moreScrollTrigger(),
+                ...moreScroll,
             });
         };
 
@@ -230,6 +229,28 @@ export default function TextEngine(props) {
         const anim = initi_animation();
         return anim;
     }, [ready, screenResize]);
+
+    if(useHtml==="div"){
+        return (
+            <div 
+                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
+                style={{...style}} ref={containerRef}
+            >
+                {text || children}
+            </div>
+        );
+    }
+
+    if(useHtml==="span"){
+        return (
+            <span 
+                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
+                style={{...style}} ref={containerRef}
+            >
+                {text || children}
+            </span>
+        );
+    }
 
 
     return (

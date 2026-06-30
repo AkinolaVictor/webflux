@@ -20,25 +20,27 @@ export interface TextEngineTypes {
     gsapScrollTrigger?: any,
     extendAnimation?: any,
     defaultAnimation?: any
+    useHtml?: "span" | "div"
 }
 
-export default function TextEngine(props: TextEngineTypes) {
-    const {
-        text, 
-        scrollingElement,
-        progression="char",
-        style,
-        className,
-        children,
-        playOnScroll=false,
-        playInView=false,
-        delay=0,
-        timeline=undefined,
-        speed,
-        gsapScrollTrigger,
-        defaultAnimation,
-        extendAnimation,
-    } = props
+export default function TextEngine({
+    text, 
+    scrollingElement,
+    progression="char",
+    style,
+    className,
+    children,
+    playOnScroll=false,
+    playInView=false,
+    delay=0,
+    timeline=undefined,
+    speed,
+    gsapScrollTrigger,
+    defaultAnimation,
+    extendAnimation,
+    useHtml
+}: TextEngineTypes) {
+
     const containerRef = useRef<HTMLParagraphElement | null>(null);
     const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
@@ -245,6 +247,28 @@ export default function TextEngine(props: TextEngineTypes) {
         const anim = initi_animation();
         return anim;
     }, [ready, screenResize]);
+
+    if(useHtml==="div"){
+        return (
+            <div 
+                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
+                style={{...style}} ref={containerRef}
+            >
+                {text || children}
+            </div>
+        );
+    }
+
+    if(useHtml==="span"){
+        return (
+            <span 
+                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
+                style={{...style}} ref={containerRef}
+            >
+                {text || children}
+            </span>
+        );
+    }
 
 
     return (
