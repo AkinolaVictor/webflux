@@ -14,7 +14,7 @@
                     "type": "registry:component"
                 }
             ],
-            "dependencies": ["react", "gsap"],
+            "dependencies": ["react", "react-dom", "gsap"],
             "registryDependencies": []
         },
         {
@@ -28,8 +28,8 @@
                     "type": "registry:ui"
                 }
             ],
-            "dependencies": ["react", "gsap"],
-            "registryDependencies": ["http://localhost:3000/r/TextEngine.json"]
+            "dependencies": [],
+            "registryDependencies": ["https://webflux-rouge.vercel.app/r/TextEngine.json"]
         },
         {
             "name": "TextRevealByHeightOverlay",

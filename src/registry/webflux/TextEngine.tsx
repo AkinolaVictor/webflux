@@ -82,38 +82,35 @@ export default function TextEngine(props: TextEngineTypes) {
         // depending on the type of animation progression the developer wants
         // return elements that must be looped through to create the animation
         function progression_state () {
-            let char_animate, word_animate;
-
-            // animate characters and line together
+            
+            let anim2:any = chars
             if(progression === "char_line") {
+                // animate characters and line together
                 const charMeta = lines.flatMap((line)=>{
                     const lineChars = chars.filter((c)=>{
                         return line.contains(c);
                     });
                     return lineChars.map((char, charIndexInLine)=>({char, charIndexInLine}));
                 });
-                char_animate = charMeta;
-            };
-
-            // animate words and line together
-            if(progression === "word_line") {
+                anim2 = charMeta
+            } else if(progression === "word_line") {
+                // animate words and line together
                 const wordMeta = lines.flatMap((line, index1)=>{
                     const lineWords = words.filter((c)=>{
                         return line.contains(c);
                     });
                     return lineWords.map((char, charIndexInLine)=>({char, charIndexInLine}));
                 });
-                word_animate = wordMeta;
+                anim2 = wordMeta
+            } else {
+                anim2 = (
+                    progression=="char"?chars:
+                    progression=="word"?words:
+                    progression=="line"?lines:
+                    chars
+                );
             }
 
-            const anim:any = (
-                progression=="char"?chars:
-                progression=="word"?words:
-                progression=="line"?lines:
-                progression=="char_line"?char_animate:
-                progression=="word_line"?word_animate:
-                chars
-            );
 
             return {
                 set: (
@@ -124,7 +121,7 @@ export default function TextEngine(props: TextEngineTypes) {
                     progression=="word_line"?words:    //animate words with line progressively
                     chars
                 ),
-                animate: anim,
+                animate: anim2,
                 speed_0: speed || (
                     progression=="char"?(playOnScroll?0.005:0.1):
                     progression=="word"?0.35:
