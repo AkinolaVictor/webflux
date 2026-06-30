@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import React, { Children, useEffect, useRef, useState } from 'react'
-import { TextProgression } from '../types/textProgession.types';
+import { TextEngineTypes } from '../engines/TextEngine';
 
 // interface Props {
 //     text: string,
@@ -22,7 +22,7 @@ import { TextProgression } from '../types/textProgession.types';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-function TextFade_2(props: TextProgression) {
+function TextFade_2(props: TextEngineTypes) {
     const {
         text, 
         scroll_con,
