@@ -15,7 +15,7 @@ export const texts = {
         texts_fade_overlay,
         texts_fade_skew,
         texts_fade_skew_2,
-        // texts_texter,
+        texts_texter,
         overlay_reveal,
         // {
         //     title: "Text Fadez",
