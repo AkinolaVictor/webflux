@@ -48,7 +48,7 @@ export default function TextEngine({
     function initi_animation(){
         const el = containerRef.current;
         if(!el) return;
-        
+
         // declare scrolling element
         function findScrollingElement(elem:string){
             let parent = document.querySelector(elem)
@@ -150,9 +150,7 @@ export default function TextEngine({
                 const which_val = which=="from"?val[0]:
                                 which=="to"?val[1]:
                                 "";
-                if(which_val !== null){
-                    all[key] = which_val;
-                }
+                all[key] = which_val;
             };
             
             return all;
@@ -160,6 +158,8 @@ export default function TextEngine({
         
         gsap.set(progression_data.set, {
             opacity: 0,
+            x: 100,
+            skewX: 100,
             ...build_extend_animation(defaultAnimation, "from"),
             ...build_extend_animation(extendAnimation, "from")
         });
@@ -179,6 +179,8 @@ export default function TextEngine({
                     char,
                     {
                         opacity: 1,
+                        x: 0,
+                        skewX: 0,
                         ease: "power3.out",
                         ...build_extend_animation(defaultAnimation, "to"),
                         ...build_extend_animation(extendAnimation, "to")
@@ -210,7 +212,7 @@ export default function TextEngine({
             ScrollTrigger.create({
                 trigger: el,
                 scroller,
-                start: "top 85%",
+                start: "top 80%",
                 end: "top 35%",
                 scrub: playOnScroll,
                 animation: tl,
@@ -253,8 +255,8 @@ export default function TextEngine({
     if(useHtml==="div"){
         return (
             <div 
-                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-                style={{...style}} ref={containerRef}
+                className={`fade_textation_6 ${className}`}
+                style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
             >
                 {text || children}
             </div>
@@ -264,8 +266,8 @@ export default function TextEngine({
     if(useHtml==="span"){
         return (
             <span 
-                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-                style={{...style}} ref={containerRef}
+                className={`fade_textation_6 ${className}`}
+                style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
             >
                 {text || children}
             </span>
@@ -275,8 +277,8 @@ export default function TextEngine({
 
     return (
         <p 
-            className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-            style={{...style}} ref={containerRef}
+            className={`fade_textation_6 ${className}`}
+            style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
         >
             {text || children}
         </p>

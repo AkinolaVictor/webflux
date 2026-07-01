@@ -1,9 +1,8 @@
-import TextFade from '@/registry/webflux/texts/TextFade'
-import React from 'react'
+import TextFadeSkew from '@/registry/webflux/texts/TextFadeSkew'
 
 interface Props {}
 
-function Text_Fade_Preview(props: Props) {
+export default function Text_Fade_Skew_Preview(props: Props) {
     const {} = props
     
     return (
@@ -14,12 +13,10 @@ function Text_Fade_Preview(props: Props) {
                     1/6
                 </div>
 
-                <TextFade
-                    // progression="char"
-                    // scrollingElement={'.component-preview-container'}
+                <TextFadeSkew
                     className='text-[25px] font-bold text-center'
                     text={`
-                        Text Fade Animation Preview Examples (keep scrolling)
+                        Text Fade Skew Animation Preview Examples (keep scrolling)
                     `}
                 />
             </div>
@@ -28,14 +25,13 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/6
                 </div>
-                <TextFade
-                    progression="char"
-                    // scrollingElement={'.component-preview-container'}
+                <TextFadeSkew
+                    progression="word"
                     className='text-[20px]'
                     style={{color: "yellow"}}
                     playInView
                     text={`
-                        This text automatically animates each time it's scrolled to view from the bottom
+                        This text automatically animates word by word each time it's scrolled to view from the bottom, each time you scroll to the bottom and up again, it repeats the animation
                     `}
                 />
 
@@ -45,7 +41,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     3/6
                 </div>
-                <TextFade
+                <TextFadeSkew
                     progression="char"
                     // scrollingElement={'.component-preview-container'}
                     className='w11:text-[20px]'
@@ -61,7 +57,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     4/6
                 </div>
-                <TextFade
+                <TextFadeSkew
                     progression="line"
                     // scrollingElement={'.component-preview-container'}
                     playOnScroll
@@ -76,7 +72,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     5/6
                 </div>
-                <TextFade
+                <TextFadeSkew
                     progression="char_line"
                     // scrollingElement={'.component-preview-container'}
                     playOnScroll
@@ -91,7 +87,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     6/6
                 </div>
-                <TextFade
+                <TextFadeSkew
                     className='text-[20px]'
                     // scrollingElement={'.component-preview-container'}
                     playInView
@@ -103,5 +99,3 @@ function Text_Fade_Preview(props: Props) {
         </div>
     )
 }
-
-export default Text_Fade_Preview

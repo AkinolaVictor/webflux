@@ -60,7 +60,7 @@ function ComponentDetails(props: Props) {
     //     // setCompData(resp)
     // }, [path])
 
-    // console.log(get_data())
+    // console.log("just testing")
     const showcode = `${language.value}_${styling.value}`
     
     useEffect(()=>{

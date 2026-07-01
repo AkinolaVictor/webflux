@@ -5,24 +5,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export interface TextEngineTypes {
-    text: string,
-    scrollingElement?: string,
-    progression?: "char" | "word" | "line" | "char_line" | "word_line",
-    style?: any,
-    className?: string,
-    children?: string,
-    speed?: number,
-    playOnScroll?: boolean | number | undefined,
-    playInView?: boolean,
-    delay?: number,
-    timeline?: any,
-    gsapScrollTrigger?: any,
-    extendAnimation?: any,
-    defaultAnimation?: any
-    useHtml?: "span" | "div"
-}
-
 export default function TextEngine({
     text, 
     scrollingElement,
@@ -39,18 +21,18 @@ export default function TextEngine({
     defaultAnimation,
     extendAnimation,
     useHtml
-}: TextEngineTypes) {
+}) {
 
-    const containerRef = useRef<HTMLParagraphElement | null>(null);
+    const containerRef = useRef(null);
     const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
     
     function initi_animation(){
         const el = containerRef.current;
         if(!el) return;
-        
+
         // declare scrolling element
-        function findScrollingElement(elem:string){
+        function findScrollingElement(elem){
             let parent = document.querySelector(elem)
             
             while(parent) {
@@ -80,7 +62,7 @@ export default function TextEngine({
         // return elements that must be looped through to create the animation
         function progression_state() {
             
-            let anim2:any = chars
+            let anim2 = chars
             if(progression === "char_line") {
                 // animate characters and line together
                 const charMeta = lines.flatMap((line)=>{
@@ -132,7 +114,7 @@ export default function TextEngine({
 
 
         // convert extend animation input to acceptable css styles for the engine
-        function build_extend_animation(animation: object, which:"from" | "to"){
+        function build_extend_animation(animation, which){
             const obj = typeof(animation)=="object"?
                         animation:
                         {};
@@ -142,17 +124,15 @@ export default function TextEngine({
                 return {key, val};
             });
     
-            const all:any = {};
+            const all = {};
     
             for(let i=0; i<input_obj.length; i++){
                 const key = input_obj[i].key;
-                const val: any = input_obj[i].val;
+                const val = input_obj[i].val;
                 const which_val = which=="from"?val[0]:
                                 which=="to"?val[1]:
                                 "";
-                if(which_val !== null){
-                    all[key] = which_val;
-                }
+                all[key] = which_val;
             };
             
             return all;
@@ -160,17 +140,19 @@ export default function TextEngine({
         
         gsap.set(progression_data.set, {
             opacity: 0,
+            x: 100,
+            skewX: 100,
             ...build_extend_animation(defaultAnimation, "from"),
             ...build_extend_animation(extendAnimation, "from")
         });
 
         const paused = (playOnScroll || playInView)?true:false;
         const tl = timeline || gsap.timeline({paused, delay});
-        const anim = (tl:any)=>{
+        const anim = (tl)=>{
             if(!tl) return null;
             
             // loop through each line and apply styles to each character sequentially
-            progression_data.animate.forEach((charz:any, index:number)=>{
+            progression_data.animate.forEach((charz, index)=>{
                 let check_progression = progression==="char_line" || progression==="word_line";
                 let char = check_progression ? charz.char : charz;
                 const charIndexInLine = check_progression ? charz.charIndexInLine : index;
@@ -179,6 +161,8 @@ export default function TextEngine({
                     char,
                     {
                         opacity: 1,
+                        x: 0,
+                        skewX: 0,
                         ease: "power3.out",
                         ...build_extend_animation(defaultAnimation, "to"),
                         ...build_extend_animation(extendAnimation, "to")
@@ -210,7 +194,7 @@ export default function TextEngine({
             ScrollTrigger.create({
                 trigger: el,
                 scroller,
-                start: "top 85%",
+                start: "top 80%",
                 end: "top 35%",
                 scrub: playOnScroll,
                 animation: tl,
@@ -253,8 +237,8 @@ export default function TextEngine({
     if(useHtml==="div"){
         return (
             <div 
-                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-                style={{...style}} ref={containerRef}
+                className={`fade_textation_6 ${className}`}
+                style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
             >
                 {text || children}
             </div>
@@ -264,8 +248,8 @@ export default function TextEngine({
     if(useHtml==="span"){
         return (
             <span 
-                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-                style={{...style}} ref={containerRef}
+                className={`fade_textation_6 ${className}`}
+                style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
             >
                 {text || children}
             </span>
@@ -275,10 +259,13 @@ export default function TextEngine({
 
     return (
         <p 
-            className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-            style={{...style}} ref={containerRef}
+            className={`fade_textation_6 ${className}`}
+            style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
         >
             {text || children}
         </p>
     );
 };
+
+
+

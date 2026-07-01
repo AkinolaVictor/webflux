@@ -48,7 +48,7 @@ export default function TextEngine({
     function initi_animation(){
         const el = containerRef.current;
         if(!el) return;
-        
+
         // declare scrolling element
         function findScrollingElement(elem:string){
             let parent = document.querySelector(elem)
@@ -150,16 +150,14 @@ export default function TextEngine({
                 const which_val = which=="from"?val[0]:
                                 which=="to"?val[1]:
                                 "";
-                if(which_val !== null){
-                    all[key] = which_val;
-                }
+                all[key] = which_val;
             };
             
             return all;
         }
         
         gsap.set(progression_data.set, {
-            opacity: 0,
+            opacity: 0.3,
             ...build_extend_animation(defaultAnimation, "from"),
             ...build_extend_animation(extendAnimation, "from")
         });
@@ -210,7 +208,7 @@ export default function TextEngine({
             ScrollTrigger.create({
                 trigger: el,
                 scroller,
-                start: "top 85%",
+                start: "top 80%",
                 end: "top 35%",
                 scrub: playOnScroll,
                 animation: tl,

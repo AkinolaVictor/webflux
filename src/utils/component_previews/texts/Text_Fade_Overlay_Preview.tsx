@@ -1,9 +1,9 @@
-import TextFade from '@/registry/webflux/texts/TextFade'
+import TextFadeOverlay from '@/registry/webflux/texts/TextFadeOverlay'
 import React from 'react'
 
 interface Props {}
 
-function Text_Fade_Preview(props: Props) {
+function Text_Fade_Overlay_Preview(props: Props) {
     const {} = props
     
     return (
@@ -14,9 +14,8 @@ function Text_Fade_Preview(props: Props) {
                     1/6
                 </div>
 
-                <TextFade
-                    // progression="char"
-                    // scrollingElement={'.component-preview-container'}
+                <TextFadeOverlay
+                    useHtml='div'
                     className='text-[25px] font-bold text-center'
                     text={`
                         Text Fade Animation Preview Examples (keep scrolling)
@@ -28,9 +27,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/6
                 </div>
-                <TextFade
+                <TextFadeOverlay
                     progression="char"
-                    // scrollingElement={'.component-preview-container'}
                     className='text-[20px]'
                     style={{color: "yellow"}}
                     playInView
@@ -45,9 +43,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     3/6
                 </div>
-                <TextFade
+                <TextFadeOverlay
                     progression="char"
-                    // scrollingElement={'.component-preview-container'}
                     className='w11:text-[20px]'
                     playOnScroll
                     text={`
@@ -61,9 +58,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     4/6
                 </div>
-                <TextFade
+                <TextFadeOverlay
                     progression="line"
-                    // scrollingElement={'.component-preview-container'}
                     playOnScroll
                     className='w11:text-[20px]'
                     text={`
@@ -76,9 +72,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     5/6
                 </div>
-                <TextFade
+                <TextFadeOverlay
                     progression="char_line"
-                    // scrollingElement={'.component-preview-container'}
                     playOnScroll
                     className='w11:text-[20px]'
                     text={`
@@ -91,9 +86,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     6/6
                 </div>
-                <TextFade
+                <TextFadeOverlay
                     className='text-[20px]'
-                    // scrollingElement={'.component-preview-container'}
                     playInView
                     text={`
                         The End
@@ -104,4 +98,4 @@ function Text_Fade_Preview(props: Props) {
     )
 }
 
-export default Text_Fade_Preview
+export default Text_Fade_Overlay_Preview

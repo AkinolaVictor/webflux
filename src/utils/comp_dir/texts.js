@@ -1,6 +1,9 @@
 import { ALargeSmall, Type } from "lucide-react";
 import {texts_fade} from "./texts/text_fade"
-import {texts_skew_fade} from "./texts/text_skew_fade"
+import {texts_fade_overlay} from "./texts/text_fade_overlay"
+import {texts_fade_skew} from "./texts/text_fade_skew"
+import {texts_fade_skew_2} from "./texts/text_fade_skew_2"
+import {texts_texter} from "./texts/text_texter"
 import {overlay_reveal} from "./texts/overlay_reveal"
 
 export const texts = {
@@ -9,7 +12,10 @@ export const texts = {
     // Icon: ()=><ALargeSmall size={"13px"}/>,
     content: [
         texts_fade,
-        texts_skew_fade,
+        texts_fade_overlay,
+        texts_fade_skew,
+        texts_fade_skew_2,
+        // texts_texter,
         overlay_reveal,
         // {
         //     title: "Text Fadez",

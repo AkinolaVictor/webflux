@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "TextFade",
   "title": "Text Fade",
-  "description": "A basic text animation component",
+  "description": "A text animation component",
   "dependencies": [],
   "registryDependencies": [
     "https://webflux-rouge.vercel.app/r/TextEngine.json"

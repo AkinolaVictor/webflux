@@ -20,3 +20,10 @@ export function get_component_data(this_path:string){
 
     return null
 }
+
+export async function getCode(path:string, func:any){
+    const res = await fetch(path)
+    const text = await res.text()
+    if(func) func(text)
+    return text
+}

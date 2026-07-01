@@ -1,0 +1,119 @@
+// import the TextFade component
+
+import TextFadeSkew from '@/TextFadeSkew';
+
+// Example 1 code (check preview section)
+<TextFadeSkew
+    text="Text Fade Skew Animation Preview Examples (keep scrolling)"
+/>
+
+
+// Example 2 code (check preview section)
+<TextFadeSkew
+    style={{fontSize: "20px", color: "yellow"}}
+    progression="word"
+    playInView
+    text="This text automatically animates word by word each time it's scrolled to view from the bottom, each time you scroll to the bottom and up again, it repeats the animation"
+/>
+
+
+// Example 3 code (check preview section)
+<TextFadeSkew
+    playOnScroll
+    scrollingElement={'.scrollable_parent_container'}  
+    text="This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed."
+/>
+
+
+// Example 4 code (check preview section)
+<TextFadeSkew
+    text="Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation."
+    progression="line"
+    playOnScroll={true}
+    //The container element is scrollable, so i watch it through it's class name
+    //don't use the scrollingElement prop if you don't have any scrollable parent element to watch, it will default to the window scrollable element
+/>
+
+
+// Example 5 code (check preview section)
+<TextFadeSkew
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    playOnScroll
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+/>
+
+
+// extendAnimation example
+<TextFadeSkew
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    playOnScroll
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+    extendAnimation={{
+        // template
+        // style: [old_value, new_value] change from old_value to new_value
+        color: ["blue", "yellow"], //change color from blue to yellow
+        x: [100, 0], //change x from 100px to 0px
+        width: [400, 0] change width from 400px to 0px
+        skewX: [70, 0], //change skewX from 70 to 0
+        opacity: [1, 1], //use this value [1, 1] to stop the default opacity behavior(which is [0, 1]), but you can set it to something else though, like [0.3, 1] (from 0.3 to 1)
+    }}
+/>
+
+
+// timeline prop
+const tl = gsap.timeline({delay: 1.5});
+<TextFadeSkew
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    playOnScroll
+    timeline={tl}
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+/>
+
+
+// gsap Scrolltrigger prop
+// ensure that either playOnScroll or playInView is set to true
+// OBJECT EXAMPLE
+<TextFadeSkew
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+    playOnScroll
+    gsapScrollTrigger={{
+        start: "top 80%", //when animation should start
+        end: "top 35%", //when animation should end
+        trigger: ".another_element", //element to trigger animation
+        scroller: {document.querySelector(".another_scroller")}, //to overwrite the window scroll element to watch
+        scrub: false
+        // basically anything that works in gsap scrollTrigger also works here
+    }}
+/>
+
+
+// gsap Scrolltrigger prop
+// ensure that either playOnScroll or playInView is set to true
+// FUNCTION EXAMPLE
+<TextFadeSkew
+    text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
+    progression="char_line"
+    scrollingElement={'.component-preview-container'}
+    className='w11:text-[20px]' //just some tailwind class. you can use the class prop and achieve same result
+    playOnScroll
+    gsapScrollTrigger={(timeline)=>{
+        // you can do anything here
+        // basically anyhing you can do with gsap scrollTrigger also works here
+        return {
+            start: "top 80%", //when animation should start
+            end: "top 35%", //when animation should end
+            trigger: ".another_element", //element to trigger animation
+            scroller: {document.querySelector(".another_scroller")}, //to overwrite the window scroll element to watch
+            scrub: false,
+            animation: timeline, //i used the timeline here
+            onEnter: ()=>timeline.restart(), //i used the timeline here
+            onLeaveBack: ()=>timeline.pause(), //i used the timeline here
+            // basically anything that works in gsap scrollTrigger also works here
+        }
+    }}
+/>

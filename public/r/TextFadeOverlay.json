@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "TextFadeOverlay",
+  "title": "Text Fade Overlay",
+  "description": "A text animation component",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://webflux-rouge.vercel.app/r/TextEngine.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/webflux/texts/TextFadeOverlay.tsx",
+      "content": "import TextEngine, { TextEngineTypes } from '../TextEngine';\r\n\r\n\r\nfunction TextFadeOverlay(props: TextEngineTypes) {\r\n\r\n\r\n    return (\r\n        <TextEngine \r\n            defaultAnimation={{\r\n                opacity: [0.2, 1]\r\n            }}\r\n            {...props}\r\n        />\r\n    )\r\n}\r\n\r\nexport default TextFadeOverlay\r\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

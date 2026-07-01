@@ -3,13 +3,7 @@ import CodeBlock_Custom from "@/registry/locals/CodeBlock_Custom";
 import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
 import { ALargeSmall, Type } from "lucide-react";
 import { TextEngineProps } from "../../engineProps/TextEngineProps"
-
-async function getCode(path, func){
-    const res = await fetch(path)
-    const text = await res.text()
-    if(func) func(text)
-    return text
-}
+import { getCode } from "@/utils/helper";
 
 const usageFunc = (setState)=>getCode("/codes/text_fade/text_fade_usage.txt", setState)
 const ts_tw = (setState)=>getCode("/codes/text_fade/text_fade_ts_tw.txt", setState)
@@ -23,8 +17,8 @@ export const texts_fade = {
     id: "main2",
     section: "Texts",
     Icon: ()=><Type size={"13px"}/>,
-    description: "Reveal text by making it to fade in and out",
-    concept: "Description of the way this was achieved",
+    description: "Reveal text by adjusting its opacity value",
+    // concept: "Description of the way this was achieved",
     setup: {
         cli: {
             npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFade.json",
