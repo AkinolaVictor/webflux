@@ -1,17 +1,22 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
 export interface TextEngineTypes {
-    text: string,
+    children?: ReactElement<{
+        className?: string;
+        style:any;
+        ref?: React.Ref<HTMLElement>;
+    }>,
+    text?: string,
     scrollingElement?: string,
     progression?: "char" | "word" | "line" | "char_line" | "word_line",
     style?: any,
     className?: string,
-    children?: string,
+    // children?: string,
     speed?: number,
     playOnScroll?: boolean | number | undefined,
     playInView?: boolean,
@@ -20,7 +25,6 @@ export interface TextEngineTypes {
     gsapScrollTrigger?: any,
     extendAnimation?: any,
     defaultAnimation?: any
-    useHtml?: "span" | "div"
 }
 
 export default function TextEngine({
@@ -38,7 +42,6 @@ export default function TextEngine({
     gsapScrollTrigger,
     defaultAnimation,
     extendAnimation,
-    useHtml
 }: TextEngineTypes) {
 
     const containerRef = useRef<HTMLParagraphElement | null>(null);
@@ -75,6 +78,7 @@ export default function TextEngine({
         })
         const {chars, lines, words} = splitRef;
         const progression_data = progression_state()
+        
 
         // depending on the type of animation progression the developer wants
         // return elements that must be looped through to create the animation
@@ -166,6 +170,42 @@ export default function TextEngine({
 
         const paused = (playOnScroll || playInView)?true:false;
         const tl = timeline || gsap.timeline({paused, delay});
+
+        // not functional, wanted to do read mode
+        function checkReadMode(){
+            if(true){
+                for(let i=0; i<lines.length; i++){
+                    // const each = lines[i]
+                    lines[i].classList.add(`line_${i}`)
+                    
+                    const div = document.createElement("div")
+                    div.className = `read_marker_${i}`
+                    div.style.width = "0.5px"
+                    div.style.height = "0.5px"
+    
+                    // lines[i].parentNode.insertBefore(div, lines[i])
+                    lines[i].insertAdjacentElement("beforebegin", div)
+    
+                    tl.to(
+                        lines[i], 
+                        {
+                            opacity: 1,
+                            duration: 1,
+                            scrollTrigger: {
+                                trigger: document.querySelector(`read_marker_${i}`),
+                                start: "top 80%",
+                                end: "bottom 20%",
+                                scrub: true,
+                            }
+                        },
+                        i
+                    )
+                }
+            }
+        }
+
+        const moreScroll = moreScrollTrigger()
+
         const anim = (tl:any)=>{
             if(!tl) return null;
             
@@ -180,8 +220,9 @@ export default function TextEngine({
                     {
                         opacity: 1,
                         ease: "power3.out",
+                        // ...anime_style,
                         ...build_extend_animation(defaultAnimation, "to"),
-                        ...build_extend_animation(extendAnimation, "to")
+                        ...build_extend_animation(extendAnimation, "to"),
                     },
                     charIndexInLine*progression_data.speed_0 //use for speed (fast or slow)
                 );
@@ -203,8 +244,6 @@ export default function TextEngine({
 
             return {};
         }
-
-        const moreScroll = moreScrollTrigger()
 
         if(playOnScroll){
             ScrollTrigger.create({
@@ -250,35 +289,30 @@ export default function TextEngine({
         return anim;
     }, [ready, screenResize]);
 
-    if(useHtml==="div"){
-        return (
-            <div 
-                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-                style={{...style}} ref={containerRef}
-            >
-                {text || children}
-            </div>
-        );
-    }
 
-    if(useHtml==="span"){
-        return (
-            <span 
-                className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-                style={{...style}} ref={containerRef}
-            >
-                {text || children}
-            </span>
-        );
+    if(React.isValidElement(children)){
+        return React.cloneElement(children, {
+            ref: containerRef,
+            style: {
+                visibility: ready?"visible":"hidden",
+                ...style,
+                ...children.props.style
+            },
+            className: [
+                "fade_textation_x",
+                children.props.className, 
+                className,
+            ].filter(Boolean).join(" ")
+        })
     }
 
 
     return (
         <p 
-            className={`${ready?"":"invisible"} fade_textation_x ${className}`}
-            style={{...style}} ref={containerRef}
+            className={`fade_textation_6 ${className}`}
+            style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
         >
-            {text || children}
+            {text}
         </p>
     );
 };

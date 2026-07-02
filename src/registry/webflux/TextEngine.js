@@ -143,8 +143,6 @@ export default function TextEngine({
         
         gsap.set(progression_data.set, {
             opacity: 0,
-            x: 100,
-            skewX: -100,
             ...build_extend_animation(defaultAnimation, "from"),
             ...build_extend_animation(extendAnimation, "from")
         });

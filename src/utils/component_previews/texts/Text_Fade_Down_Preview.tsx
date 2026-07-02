@@ -1,9 +1,9 @@
-import TextFade from '@/registry/webflux/texts/TextFade'
+import TextFadeDown from '@/registry/webflux/texts/TextFadeDown'
 import React from 'react'
 
 interface Props {}
 
-function Text_Fade_Preview(props: Props) {
+function Text_Fade_Down_Preview(props: Props) {
     const {} = props
     
     return (
@@ -14,7 +14,7 @@ function Text_Fade_Preview(props: Props) {
                     1/6
                 </div>
 
-                <TextFade
+                <TextFadeDown
                     // progression="char"
                     // scrollingElement={'.component-preview-container'}
                     className='text-[25px] font-bold text-center'
@@ -28,7 +28,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/6
                 </div>
-                <TextFade
+                <TextFadeDown
                     progression="char"
                     // scrollingElement={'.component-preview-container'}
                     className='text-[20px]'
@@ -45,7 +45,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     3/6
                 </div>
-                <TextFade
+                <TextFadeDown
                     progression="char"
                     // scrollingElement={'.component-preview-container'}
                     className='w11:text-[20px]'
@@ -61,7 +61,7 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     4/6
                 </div>
-                <TextFade
+                <TextFadeDown
                     progression="line"
                     // scrollingElement={'.component-preview-container'}
                     playOnScroll
@@ -76,29 +76,22 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     5/6
                 </div>
-                <TextFade
+                <TextFadeDown
                     progression="char_line"
                     // scrollingElement={'.component-preview-container'}
                     playOnScroll
                     className='w11:text-[20px]'
-                    style={{color: "yellow"}}
-                    // text={`
-                    //     Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
-                    // `}
-                >
-                    <span 
-                        // style={{color: "green"}}
-                    >
+                    text={`
                         Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
-                    </span>
-                </TextFade>
+                    `}
+                />
             </div>
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     6/6
                 </div>
-                <TextFade
+                <TextFadeDown
                     className='text-[20px]'
                     // scrollingElement={'.component-preview-container'}
                     playInView
@@ -111,4 +104,4 @@ function Text_Fade_Preview(props: Props) {
     )
 }
 
-export default Text_Fade_Preview
+export default Text_Fade_Down_Preview

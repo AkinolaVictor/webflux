@@ -1,11 +1,25 @@
-// import the TextFade component
-
 import TextFadeSkew_2 from '@/TextFadeSkew_2';
 
 // Example 1 code (check preview section)
 <TextFadeSkew_2
     text="Text Fade Skew Animation Preview Examples (keep scrolling)"
 />
+
+// you can also use any html tag to convey your text, like this:
+<TextFade>
+    <p>Text Fade Animation Preview Examples (keep scrolling)</p>
+</TextFade>
+<TextFade>
+    <span>Text Fade Animation Preview Examples (keep scrolling)</span>
+</TextFade>
+<TextFade>
+    <div>Text Fade Animation Preview Examples (keep scrolling)</div>
+</TextFade>
+<TextFade>
+    <li>Text Fade Animation Preview Examples (keep scrolling)</li>
+</TextFade>
+
+
 
 
 // Example 2 code (check preview section)
@@ -55,9 +69,13 @@ import TextFadeSkew_2 from '@/TextFadeSkew_2';
         // style: [old_value, new_value] change from old_value to new_value
         color: ["blue", "yellow"], //change color from blue to yellow
         x: [100, 0], //change x from 100px to 0px
+        opacity: [1, 1], //use this value [1, 1] to stop the default opacity behavior(which is [0, 1]), but you can set it to something else though, like [0.3, 1] (from 0.3 to 1)
         width: [400, 0] change width from 400px to 0px
         skewX: [70, 0], //change skewX from 70 to 0
-        opacity: [1, 1], //use this value [1, 1] to stop the default opacity behavior(which is [0, 1]), but you can set it to something else though, like [0.3, 1] (from 0.3 to 1)
+        // you can also set one property and avoid the other
+        y: [null, 30] // skip the from property and only set the to value, in this case, i only want the y propety to be set to 30px
+        duration: [null, 0.7] // skip the "from" property and only set the "to" property, in this case, sets the animation duration to 0.7 second
+        stagger: [null, 0.1], // skip the "from" property and only set the "to" property, in this case, sets the animation stagger to 0.1
     }}
 />
 

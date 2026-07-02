@@ -15,7 +15,6 @@ function Text_Fade_Overlay_Preview(props: Props) {
                 </div>
 
                 <TextFadeOverlay
-                    useHtml='div'
                     className='text-[25px] font-bold text-center'
                     text={`
                         Text Fade Animation Preview Examples (keep scrolling)

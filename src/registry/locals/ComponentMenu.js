@@ -5,17 +5,14 @@ import {components_directories} from "../../utils/comp_dir/components_directorie
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
-interface Props {
-    func?: any
-}
 
-function ComponentMenu(props: Props) {
-    const {func} = props
+function ComponentMenu({func}) {
+    // const {func} = props
     const [toggleState, setToggleState] = useState([""])
     const path = usePathname()
     const router = useRouter()
 
-    function toggler(value:string){
+    function toggler(value){
         setToggleState((prev)=>{
             const curr = [...prev]
             if(curr.includes(value)){
@@ -28,7 +25,7 @@ function ComponentMenu(props: Props) {
         })
     }
 
-    function click_handler(item:any){
+    function click_handler(item){
         func && func()
         // const {title, href, id} = item
     }
@@ -73,19 +70,20 @@ function ComponentMenu(props: Props) {
                                         <div className={`${hid?'':"hidden"}`}>
                                             {
                                                 item_1.content.map((item_2, index_2)=>{
-                                                    const {title, href, id} = item_2
+                                                    const {title, href, id, hide} = item_2
                                                     const isPath = path==href
                                                     // console.log(isPath, thisRef)
                                                     return (
                                                         <Link
                                                             href={href}
                                                             key={index_2}
+                                                            style={{display: hide?"none":"block"}}
                                                         >
                                                             <div 
                                                                 key={index_2} 
                                                                 onClick={()=>click_handler(item_2)}
                                                                 className={`
-                                                                    cursor-pointer rounded-[3px] w-full px-2 py-1 hover:bg-[#3c3838] 
+                                                                    cursor-pointer rounded-[3px] w-full px-2 py-2 hover:bg-[#3c3838] 
                                                                     ${isPath?"bg-[#3c3838]":""}
                                                                 `}
                                                             >

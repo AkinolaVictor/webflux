@@ -14,6 +14,7 @@ export const texts_texter = {
     title: "Text Tester",
     href: "/components/text_tester",
     id: "text_texter",
+    hide: process.env.NEXT_PUBLIC_DEVELOPMENT_ENV==="local"?false:true,
     section: "Texts",
     Icon: ()=><Type size={"13px"}/>,
     description: "This is a playground to test run several animations",

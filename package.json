@@ -10,7 +10,8 @@
     "lint": "eslint",
     "shadcn": "npx shadcn build",
     "dev2": "npx next dev --webpack",
-    "git": "git add . && git commit -m 'fade_animation' && git push origin master"
+    "git": "git add . && git commit -m 'completed_text_Fadings' && git push origin master",
+    "push": "npm run shadcn && npm run git"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",

@@ -51,13 +51,13 @@ export const TextEngineProps = [
         description: "How fast or slow you want the animation to play.",
         more_des: "A good range is between 0.001 and 2, but you can go below and above that",
     },
-    {
-        name: "useHtml",
-        type: "string",
-        range: "div | span",
-        description: "Instead of using the default <p> tag, you can choose to use the <div> tag or the <span> tag",
-        // more_des: "A good range is between 0.001 and 2, but you can go below and above that",
-    },
+    // {
+    //     name: "useHtml",
+    //     type: "string",
+    //     range: "div | span",
+    //     description: "Instead of using the default <p> tag, you can choose to use the <div> tag or the <span> tag",
+    //     // more_des: "A good range is between 0.001 and 2, but you can go below and above that",
+    // },
     {
         name: "playOnScroll",
         type: "boolean",
@@ -134,7 +134,10 @@ timeline={tl}
         type: "object",
         range: <p>sample: {`{color: ["blue", "red"]}`}</p>,
         description: "Add more styles to the animation.",
-        more_des: "Extend the animation beyond the current state, you can animate any css style, primarily any style you can animate using gsap also works here (check the usage section for better example)",
+        more_des: `
+            Extend the animation beyond the current state, you can animate any css gsap enabled properties, 
+            primarily any style you can animate using gsap also works here (check the usage section for better example)
+        `,
         value: true
     },
     {

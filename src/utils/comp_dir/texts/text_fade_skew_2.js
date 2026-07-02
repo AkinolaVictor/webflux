@@ -35,6 +35,12 @@ export const texts_fade_skew_2 = {
             }
         }
     },
+    // similar: [
+    //     {
+    //         name: "FadeSkew 2",
+    //         href: "/components/text_fade_skew_2"
+    //     }
+    // ],
     engine: "TextEngine",
     preview: Text_Fade_Skew_2_Preview,
     props: [

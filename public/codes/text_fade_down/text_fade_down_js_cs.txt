@@ -1,10 +1,9 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
-
 
 export default function TextEngine({
     text, 
@@ -143,8 +142,7 @@ export default function TextEngine({
         
         gsap.set(progression_data.set, {
             opacity: 0,
-            x: 100,
-            skewX: -100,
+            y: 100%,
             ...build_extend_animation(defaultAnimation, "from"),
             ...build_extend_animation(extendAnimation, "from")
         });
@@ -167,6 +165,9 @@ export default function TextEngine({
                     char,
                     {
                         opacity: 1,
+                        y: "0%",
+                        duration: 1,
+                        stagger: 0.1,
                         ease: "power3.out",
                         ...build_extend_animation(defaultAnimation, "to"),
                         ...build_extend_animation(extendAnimation, "to"),

@@ -16,7 +16,6 @@ function Text_Texter_Preview(props: Props) {
                 </div>
 
                 <TextTexter
-                    useHtml='div'
                     className='text-[25px] font-bold text-center'
                     text={`
                         Text Fade Animation Preview Examples (keep scrolling)
