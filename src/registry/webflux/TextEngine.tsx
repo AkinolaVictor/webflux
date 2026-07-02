@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
@@ -284,11 +284,20 @@ export default function TextEngine({
     // }, []);
 
     // 
-    useEffect(()=>{
-        const anim = initi_animation();
-        return anim;
-    }, [ready]);
+    // useEffect(()=>{
+    //     const anim = initi_animation();
+    //     return anim;
+    // }, [ready]);
     // }, [ready, screenResize]);
+    
+    useLayoutEffect(()=>{
+        let anim:any = ()=>{}
+        document.fonts.ready.then(()=>{
+            anim = initi_animation();
+        })
+        return anim;
+    // }, [])
+    }, [ready])
 
 
     if(React.isValidElement(children)){
