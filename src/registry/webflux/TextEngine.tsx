@@ -267,7 +267,7 @@ export default function TextEngine({
             });
         };
 
-        setReady(true);
+        // setReady(true);
 
         return () => splitRef.revert();
     }
@@ -279,9 +279,12 @@ export default function TextEngine({
     }
 
     // watch for screen resize so animation can be updated
-    // useEffect(()=>{
-    //     updateScreenResize();
-    // }, []);
+    useEffect(()=>{
+        updateScreenResize();
+        document.fonts.ready.then(()=>{
+            setReady(true)
+        })
+    }, []);
 
     // 
     // useEffect(()=>{
@@ -291,12 +294,10 @@ export default function TextEngine({
     // }, [ready, screenResize]);
     
     useLayoutEffect(()=>{
-        let anim:any = ()=>{}
-        document.fonts.ready.then(()=>{
-            anim = initi_animation();
-        })
+        if(!ready) return
+        
+        let anim = initi_animation();
         return anim;
-    // }, [])
     }, [ready])
 
 
