@@ -1,3 +1,6 @@
+import TextFade from '@/registry/webflux/texts/TextFade'
+import TextFadeDown from '@/registry/webflux/texts/TextFadeDown'
+import TextFadeSkew_2 from '@/registry/webflux/texts/TextFadeSkew_2'
 import { pad_x } from '@/utils/helper'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
@@ -13,14 +16,17 @@ function HomeDescription(props: Props) {
             {/* <h1 className='text-[30px] font-bold'>Bring Motion and Interaction to Every Interface</h1> */}
             {/* <h1 className='text-[30px] font-bold'>Beautiful, Event-Driven Components for the Modern Web</h1> */}
             {/* <h1 className='text-[30px] font-bold'>Open-Source Components That Feel Alive</h1> */}
-            <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
-            <p className='text-[rosybrown] text-[16px]'>
-                {/* An open-source collection of fully animated web components powered by native 
-                browser events. Easy to use, easy to customize, and simple to copy, paste, or install in any project. */}
-
-                An open-source collection of beautifully animated components that respond naturally to user interactions. 
-                Easy to use, easy to customize, and simple to copy, paste, or install in any project.
-            </p>
+            <TextFadeDown progression='char_line'>
+                <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
+            </TextFadeDown>
+            <TextFade
+                progression='char_line'
+                className='text-[rosybrown] text-[16px]'
+                text={`
+                    An open-source collection of beautifully animated components that respond naturally to user interactions. 
+                    Easy to use, easy to customize, and simple to copy, paste, or install in any project.
+                `}
+            />
             <div className='flex justify-center items-center flex-wrap gap-3'>
                 <Link href={"/getting_started"}>
                     <button type="button" className='px-6 text-[14px] text-black min-h-10 bg-white rounded-full flex justify-center items-center gap-3 cursor-pointer'>

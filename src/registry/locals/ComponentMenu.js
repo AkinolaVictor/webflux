@@ -83,11 +83,11 @@ function ComponentMenu(props) {
                                                                 key={index_2} 
                                                                 onClick={()=>click_handler(item_2)}
                                                                 className={`
-                                                                    cursor-pointer rounded-[3px] w-full px-2 py-2 hover:bg-[#3c3838] 
+                                                                    cursor-pointer rounded-[3px] w-full px-2 py-3 w6:py-2 hover:bg-[#3c3838] 
                                                                     ${isPath?"bg-[#3c3838]":""}
                                                                 `}
                                                             >
-                                                                <p className='text-[12.5px] w-full h-full'>{title}</p>
+                                                                <p className='w6:text-[12.5px] text-[14px]  w-full h-full'>{title}</p>
                                                             </div>
                                                         </Link>
                                                     )
