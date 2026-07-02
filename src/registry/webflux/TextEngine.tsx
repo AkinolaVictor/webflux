@@ -279,15 +279,16 @@ export default function TextEngine({
     }
 
     // watch for screen resize so animation can be updated
-    useEffect(()=>{
-        updateScreenResize();
-    }, []);
+    // useEffect(()=>{
+    //     updateScreenResize();
+    // }, []);
 
     // 
     useEffect(()=>{
         const anim = initi_animation();
         return anim;
-    }, [ready, screenResize]);
+    }, [ready]);
+    // }, [ready, screenResize]);
 
 
     if(React.isValidElement(children)){
