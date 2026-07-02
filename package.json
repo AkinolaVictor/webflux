@@ -14,6 +14,7 @@
     "push": "npm run shadcn && npm run git"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@reduxjs/toolkit": "^2.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -46,5 +47,3 @@
     "typescript": "^5"
   }
 }
-
-

@@ -1,3 +1,4 @@
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -267,7 +268,7 @@ export default function TextEngine({
             });
         };
 
-        // setReady(true);
+        setReady(true);
 
         return () => splitRef.revert();
     }
@@ -279,12 +280,12 @@ export default function TextEngine({
     }
 
     // watch for screen resize so animation can be updated
-    useEffect(()=>{
-        updateScreenResize();
-        document.fonts.ready.then(()=>{
-            setReady(true)
-        })
-    }, []);
+    // useEffect(()=>{
+    //     updateScreenResize();
+    //     document.fonts.ready.then(()=>{
+    //         setReady(true)
+    //     })
+    // }, []);
 
     // 
     // useEffect(()=>{
@@ -293,12 +294,20 @@ export default function TextEngine({
     // }, [ready]);
     // }, [ready, screenResize]);
     
-    useLayoutEffect(()=>{
-        if(!ready) return
-        
-        let anim = initi_animation();
-        return anim;
-    }, [ready])
+    // useLayoutEffect(()=>{
+    //     if(!ready) return
+
+    //     let anim = initi_animation();
+    //     return anim;
+    // }, [ready])
+
+    useGSAP(async()=>{
+        await document.fonts.ready
+        initi_animation()
+    }, 
+    {
+        scope: containerRef
+    })
 
 
     if(React.isValidElement(children)){
