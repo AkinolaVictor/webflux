@@ -6,8 +6,8 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
 
-function ComponentMenu({func}) {
-    // const {func} = props
+function ComponentMenu(props) {
+    const {func} = props
     const [toggleState, setToggleState] = useState([""])
     const path = usePathname()
     const router = useRouter()
