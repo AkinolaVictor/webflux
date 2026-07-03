@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "src/registry/webflux/texts/TextFadeSkew_2.tsx",
-      "content": "import TextEngine, { TextEngineTypes } from '../TextEngine';\r\n\r\n\r\nfunction TextFadeSkew_2(props: TextEngineTypes) {\r\n\r\n\r\n    return (\r\n        <TextEngine \r\n            defaultAnimation={{\r\n                opacity: [0, 1],\r\n                x: [100, 0],\r\n                y: [100, 0],\r\n                skewX: [-100, 0],\r\n            }}\r\n            {...props}\r\n        />\r\n    )\r\n}\r\n\r\nexport default TextFadeSkew_2\r\n",
+      "content": "import React, { ReactElement } from 'react';\r\nimport TextEngine from '../TextEngine';\r\n\r\n\r\nexport interface TextEngineTypes {\r\n    children?: ReactElement<{\r\n        className?: string;\r\n        style:any;\r\n        ref?: React.Ref<HTMLElement>;\r\n    }>,\r\n    text?: string,\r\n    scrollingElement?: string,\r\n    progression?: \"char\" | \"word\" | \"line\" | \"char_line\" | \"word_line\",\r\n    style?: any,\r\n    className?: string,\r\n    speed?: number,\r\n    playOnScroll?: boolean | number | undefined,\r\n    playInView?: boolean,\r\n    delay?: number,\r\n    timeline?: any,\r\n    gsapScrollTrigger?: any,\r\n    extendAnimation?: any,\r\n    defaultAnimation?: any,\r\n    watch?: any\r\n}\r\n\r\nfunction TextFadeSkew_2(props: TextEngineTypes) {\r\n\r\n\r\n    return (\r\n        <TextEngine \r\n            defaultAnimation={{\r\n                opacity: [0, 1],\r\n                x: [100, 0],\r\n                y: [100, 0],\r\n                skewX: [-100, 0],\r\n            }}\r\n            {...props}\r\n        />\r\n    )\r\n}\r\n\r\nexport default TextFadeSkew_2\r\n",
       "type": "registry:ui"
     }
   ],

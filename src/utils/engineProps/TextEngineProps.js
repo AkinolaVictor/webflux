@@ -49,15 +49,49 @@ export const TextEngineProps = [
         type: "number",
         range: "Between 0.001 - 2",
         description: "How fast or slow you want the animation to play.",
-        more_des: "A good range is between 0.001 and 2, but you can go below and above that",
+        more_des: <p>
+            A good range is between 0.001 and 2 depending on your preferred progression. However, you can go out of the box
+            <br />
+            <br />
+            if progression=char (default): between 0.01 and 1 is good (from fast to slow)
+            <br />
+            <br />
+            if progression=word: between 0.1 and 1 is good
+            <br />
+            <br />
+            if progression=line: between 0.1 and 1 is good
+            <br />
+            <br />
+            if progression=word_line: between 0.1 and 1 is good
+            <br />
+            <br />
+            if progression=word_char: between 0.1 and 1 is good
+        </p>,
     },
-    // {
-    //     name: "useHtml",
-    //     type: "string",
-    //     range: "div | span",
-    //     description: "Instead of using the default <p> tag, you can choose to use the <div> tag or the <span> tag",
-    //     // more_des: "A good range is between 0.001 and 2, but you can go below and above that",
-    // },
+    {
+        name: "watch",
+        type: "string | boolean",
+        // range: "true | false (default) | string",
+        description: "Incase you want the animation to keep a watch on when an element or the screen resizes (default is false)",
+        more_des: <p>
+            For example;
+            <br />
+            <br />
+            watch=false    (dont watch anything (default) )
+            <br />
+            <br />
+            watch=true    (watch the window scrolling element)
+            <br />
+            <br />
+            watch=".container"    (classname of a specific scrollable element)
+            <br />
+            <br />
+            watch="#id"    (id of a specific scrollable element)
+            <br />
+            <br />
+            watch="div"    (tag of a specific scrollable element)
+        </p>,
+    },
     {
         name: "playOnScroll",
         type: "boolean",

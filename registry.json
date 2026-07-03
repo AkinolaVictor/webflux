@@ -10,7 +10,7 @@
             "description": "The engine to be used to build animation that progress in chronological order.",
             "files": [
                 {
-                    "path": "src/registry/webflux/TextEngine.tsx",
+                    "path": "src/registry/webflux/TextEngine.js",
                     "type": "registry:component"
                 }
             ],

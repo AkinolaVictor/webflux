@@ -1,4 +1,3 @@
-import TextFade from '@/registry/webflux/texts/TextFade'
 import TextFadeDown from '@/registry/webflux/texts/TextFadeDown'
 import TextFadeSkew_2 from '@/registry/webflux/texts/TextFadeSkew_2'
 import { pad_x } from '@/utils/helper'
@@ -19,8 +18,11 @@ function HomeDescription(props: Props) {
             <TextFadeDown progression='char_line'>
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
             </TextFadeDown>
-            <TextFade
-                progression='char_line'
+            <TextFadeSkew_2
+                // progression='word'
+                // speed={0.1}
+
+                speed={0.05}
                 className='text-[rosybrown] text-[16px]'
                 text={`
                     An open-source collection of beautifully animated components that respond naturally to user interactions. 

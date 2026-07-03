@@ -58,4 +58,14 @@ Free Choice: JS or TS, plain CSS or Tailwind, the code is all here
 
 
 
-write a description of the perfect approach for building this ui library
+write me why i am a great fit for a frontend developer role at luma studio (2-3 sentences)
+
+here are some of the things you can talk about
+1. i was the ceo and cto of the tech startup i created
+2. i can develop quality products
+3. currently i am building an open-source project for ui library
+4. i have great communication skills
+5. i have great technical skills
+
+
+I've had the opportunity to lead products from idea to launch, giving me hands-on experience making technical decisions, building polished user experiences, and shipping high-quality software. I'm currently building an open-source UI library, which reflects my passion for creating scalable, polished frontend systems, and I pair strong technical expertise with clear communication to collaborate effectively and turn ideas into exceptional products.
