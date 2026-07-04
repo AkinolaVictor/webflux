@@ -53,19 +53,19 @@ export const TextEngineProps = [
             A good range is between 0.001 and 2 depending on your preferred progression. However, you can go out of the box
             <br />
             <br />
-            if progression=char (default): between 0.01 and 1 is good (from fast to slow)
+            if progression=char (default): between 0.01 and 1 is good (from fast to slow, default is 0.1)
             <br />
             <br />
-            if progression=word: between 0.1 and 1 is good
+            if progression=word: between 0.05 and 0.8 is good (from fast to slow, default is 0.35)
             <br />
             <br />
-            if progression=line: between 0.1 and 1 is good
+            if progression=line: between 0.3 and 1.3 is good (from fast to slow, default is 0.9)
             <br />
             <br />
-            if progression=word_line: between 0.1 and 1 is good
+            if progression=word_char: between 0.03 and 0.4 is good (from fast to slow, default is 0.08)
             <br />
             <br />
-            if progression=word_char: between 0.1 and 1 is good
+            if progression=word_line: between 0.1 and 0.9 is good (from fast to slow, default is 0.5)
         </p>,
     },
     {

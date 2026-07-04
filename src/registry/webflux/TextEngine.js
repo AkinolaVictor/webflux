@@ -6,32 +6,33 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export default function TextEngine(props) {
-    const {
-        text, 
-        scrollingElement,
-        progression="char",
-        style,
-        className,
-        children,
-        playOnScroll=false,
-        playInView=false,
-        delay=0,
-        timeline=undefined,
-        speed,
-        gsapScrollTrigger,
-        defaultAnimation,
-        extendAnimation,
-        watch
-    } = props
+export default function TextEngine({
+    text, 
+    scrollingElement,
+    progression="char",
+    style,
+    className,
+    children,
+    playOnScroll=false,
+    playInView=false,
+    delay=0,
+    timeline=undefined,
+    speed,
+    gsapScrollTrigger,
+    defaultAnimation,
+    extendAnimation,
+    watch=false
+}) {
     const containerRef = useRef(null);
     const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
     const [fontLoaded, setFontLoaded] = useState(false)
+
     
     function initi_animation(){
         const el = containerRef.current;
-        if(!el || !fontLoaded) return;
+        // if(!el || !fontLoaded) return;
+        if(!el) return;
         
         // declare scrolling element
         function findScrollingElement(elem){
@@ -142,14 +143,16 @@ export default function TextEngine(props) {
             return all;
         }
         
-        gsap.set(progression_data.set, {
+        const paused = (playOnScroll || playInView)?true:false;
+        const tl = timeline || gsap.timeline({paused, delay});
+
+        // gsap.set(progression_data.set, {
+        tl.set(progression_data.set, {
             opacity: 0,
             ...build_extend_animation(defaultAnimation, "from"),
             ...build_extend_animation(extendAnimation, "from")
         });
 
-        const paused = (playOnScroll || playInView)?true:false;
-        const tl = timeline || gsap.timeline({paused, delay});
 
         const moreScroll = moreScrollTrigger()
 
@@ -167,7 +170,6 @@ export default function TextEngine(props) {
                     {
                         opacity: 1,
                         ease: "power3.out",
-                        // ...anime_style,
                         ...build_extend_animation(defaultAnimation, "to"),
                         ...build_extend_animation(extendAnimation, "to"),
                     },
@@ -214,10 +216,11 @@ export default function TextEngine(props) {
             });
         };
 
-        setReady(true);
+        // setReady(true);
 
         return () => {
             splitRef.revert()
+            tl.kill();
             ScrollTrigger.getAll().forEach(st => {
                 if (st.trigger === el) st.kill();
             })
@@ -233,7 +236,7 @@ export default function TextEngine(props) {
         });
     }
 
-    // watch for screen resize so animation can be updated
+    // // watch for screen resize so animation can be updated
     useEffect(()=>{
         updateScreenResize();
     }, []);
@@ -245,23 +248,35 @@ export default function TextEngine(props) {
             async function seekFonts() {
                 await document.fonts.ready.then(() => {
                     setFontLoaded(true);
+                }).catch(()=>{
+                    setFontLoaded(true);
                 });
             }
             seekFonts()
         }
+
+        window.onload=()=>setReady(true)
+        document.addEventListener("DOMContentLoaded",()=>setReady(true))
+        if(document.readyState=="complete") setReady(true)
     }, []);
 
-    useLayoutEffect(()=>{
-        let anim = initi_animation();
-        return anim;
-    }, [ready, fontLoaded, screenResize])
+    // // useLayoutEffect(()=>{
+    // useEffect(()=>{
+    //     let anim = initi_animation();
+    //     return anim;
+    // }, [ready, fontLoaded, screenResize])
+    
+    useGSAP(initi_animation, {
+        dependencies: [ready, fontLoaded, screenResize],
+        scope: containerRef
+    })
 
 
     if(React.isValidElement(children)){
         return React.cloneElement(children, {
             ref: containerRef,
             style: {
-                visibility: ready?"visible":"hidden",
+                visibility: ready&&fontLoaded?"visible":"hidden",
                 ...style,
                 ...children.props.style
             },
@@ -277,45 +292,13 @@ export default function TextEngine(props) {
     return (
         <p 
             className={`fade_textation_x ${className}`}
-            style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
+            style={{
+                visibility: ready&&fontLoaded?"visible":"hidden" ,
+                ...style
+            }} 
+            ref={containerRef}
         >
             {text}
         </p>
     );
 };
-
-
-
-
-// not functional, wanted to do read mode
-// function checkReadMode(){
-//     if(true){
-//         for(let i=0; i<lines.length; i++){
-//             // const each = lines[i]
-//             lines[i].classList.add(`line_${i}`)
-            
-//             const div = document.createElement("div")
-//             div.className = `read_marker_${i}`
-//             div.style.width = "0.5px"
-//             div.style.height = "0.5px"
-
-//             // lines[i].parentNode.insertBefore(div, lines[i])
-//             lines[i].insertAdjacentElement("beforebegin", div)
-
-//             tl.to(
-//                 lines[i], 
-//                 {
-//                     opacity: 1,
-//                     duration: 1,
-//                     scrollTrigger: {
-//                         trigger: document.querySelector(`read_marker_${i}`),
-//                         start: "top 80%",
-//                         end: "bottom 20%",
-//                         scrub: true,
-//                     }
-//                 },
-//                 i
-//             )
-//         }
-//     }
-// }
