@@ -14,7 +14,7 @@
                     "type": "registry:component"
                 }
             ],
-            "dependencies": ["react", "react-dom", "gsap"],
+            "dependencies": ["react", "react-dom", "gsap", "@gsap/react"],
             "registryDependencies": []
         },
         {

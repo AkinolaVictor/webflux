@@ -6,7 +6,8 @@
   "dependencies": [
     "react",
     "react-dom",
-    "gsap"
+    "gsap",
+    "@gsap/react"
   ],
   "registryDependencies": [],
   "files": [
