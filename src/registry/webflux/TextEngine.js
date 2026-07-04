@@ -25,7 +25,6 @@ export default function TextEngine(props) {
         watch=false
     } = props
     const containerRef = useRef(null);
-    const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
     const [fontLoaded, setFontLoaded] = useState(false)
 
@@ -265,10 +264,10 @@ export default function TextEngine(props) {
     // useEffect(()=>{
     //     let anim = initi_animation();
     //     return anim;
-    // }, [ready, fontLoaded, screenResize])
+    // }, [fontLoaded, screenResize])
     
     useGSAP(initi_animation, {
-        dependencies: [ready, fontLoaded, screenResize],
+        dependencies: [fontLoaded, screenResize],
         scope: containerRef
     })
 

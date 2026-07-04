@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
@@ -20,10 +21,9 @@ export default function TextEngine({
     gsapScrollTrigger,
     defaultAnimation,
     extendAnimation,
-    watch
+    watch=false
 }){
     const containerRef = useRef(null);
-    const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
     const [fontLoaded, setFontLoaded] = useState(false)
     
@@ -217,10 +217,10 @@ export default function TextEngine({
             });
         };
 
-        setReady(true);
 
         return () => {
             splitRef.revert()
+            tl.kill()
             ScrollTrigger.getAll().forEach(st => {
                 if (st.trigger === el) st.kill();
             })
@@ -253,18 +253,18 @@ export default function TextEngine({
             seekFonts()
         }
     }, []);
-
-    useLayoutEffect(()=>{
-        let anim = initi_animation();
-        return anim;
-    }, [ready, fontLoaded, screenResize])
+    
+    useGSAP(initi_animation, {
+        dependencies: [fontLoaded, screenResize],
+        scope: containerRef
+    })
 
 
     if(React.isValidElement(children)){
         return React.cloneElement(children, {
             ref: containerRef,
             style: {
-                visibility: ready?"visible":"hidden",
+                visibility: fontLoaded?"visible":"hidden",
                 ...style,
                 ...children.props.style
             },
@@ -280,7 +280,7 @@ export default function TextEngine({
     return (
         <p 
             className={`fade_textation_x ${className}`}
-            style={{visibility: ready?"visible":"hidden" ,...style}} ref={containerRef}
+            style={{visibility: fontLoaded?"visible":"hidden" ,...style}} ref={containerRef}
         >
             {text}
         </p>
