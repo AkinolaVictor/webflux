@@ -6,23 +6,24 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export default function TextEngine({
-    text, 
-    scrollingElement,
-    progression="char",
-    style,
-    className,
-    children,
-    playOnScroll=false,
-    playInView=false,
-    delay=0,
-    timeline=undefined,
-    speed,
-    gsapScrollTrigger,
-    defaultAnimation,
-    extendAnimation,
-    watch=false
-}) {
+export default function TextEngine(props) {
+    const {
+        text, 
+        scrollingElement,
+        progression="char",
+        style,
+        className,
+        children,
+        playOnScroll=false,
+        playInView=false,
+        delay=0,
+        timeline=undefined,
+        speed,
+        gsapScrollTrigger,
+        defaultAnimation,
+        extendAnimation,
+        watch=false
+    } = props
     const containerRef = useRef(null);
     const [ready, setReady] = useState(false)
     const [screenResize, setScreenResize] = useState(0)
