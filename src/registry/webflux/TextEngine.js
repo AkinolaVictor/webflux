@@ -256,9 +256,9 @@ export default function TextEngine(props) {
             seekFonts()
         }
 
-        window.onload=()=>setReady(true)
-        document.addEventListener("DOMContentLoaded",()=>setReady(true))
-        if(document.readyState=="complete") setReady(true)
+        // window.onload=()=>setReady(true)
+        // document.addEventListener("DOMContentLoaded",()=>setReady(true))
+        // if(document.readyState=="complete") setReady(true)
     }, []);
 
     // // useLayoutEffect(()=>{
@@ -277,7 +277,7 @@ export default function TextEngine(props) {
         return React.cloneElement(children, {
             ref: containerRef,
             style: {
-                visibility: ready&&fontLoaded?"visible":"hidden",
+                visibility: fontLoaded?"visible":"hidden",
                 ...style,
                 ...children.props.style
             },
@@ -294,7 +294,7 @@ export default function TextEngine(props) {
         <p 
             className={`fade_textation_x ${className}`}
             style={{
-                visibility: ready&&fontLoaded?"visible":"hidden" ,
+                visibility: fontLoaded?"visible":"hidden" ,
                 ...style
             }} 
             ref={containerRef}
