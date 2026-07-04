@@ -32,8 +32,8 @@ export default function TextEngine(props) {
     
     function initi_animation(){
         const el = containerRef.current;
-        // if(!el || !fontLoaded) return;
-        if(!el) return;
+        if(!el || !fontLoaded || !ready) return;
+        // if(!el) return;
         
         // declare scrolling element
         function findScrollingElement(elem){
