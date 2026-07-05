@@ -10,7 +10,7 @@ export default function Text_Fade_Skew_2_Preview(props: Props) {
             
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    1/6
+                    1/7
                 </div>
 
                 <TextFadeSkew_2
@@ -23,7 +23,7 @@ export default function Text_Fade_Skew_2_Preview(props: Props) {
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    2/6
+                    2/7
                 </div>
                 <TextFadeSkew_2
                     progression="word"
@@ -39,10 +39,10 @@ export default function Text_Fade_Skew_2_Preview(props: Props) {
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    3/6
+                    3/7
                 </div>
                 <TextFadeSkew_2
-                    progression="char"
+                    // progression="word_line"
                     // scrollingElement={'.component-preview-container'}
                     className='w11:text-[20px]'
                     playOnScroll
@@ -55,7 +55,23 @@ export default function Text_Fade_Skew_2_Preview(props: Props) {
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    4/6
+                    4/7
+                </div>
+                <TextFadeSkew_2
+                    progression="word_line"
+                    // scrollingElement={'.component-preview-container'}
+                    className='w11:text-[20px]'
+                    playOnScroll
+                    text={`
+                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
+                    `}
+                />
+
+            </div>
+
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    5/7
                 </div>
                 <TextFadeSkew_2
                     progression="line"
@@ -70,7 +86,7 @@ export default function Text_Fade_Skew_2_Preview(props: Props) {
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    5/6
+                    6/7
                 </div>
                 <TextFadeSkew_2
                     progression="char_line"
@@ -85,7 +101,7 @@ export default function Text_Fade_Skew_2_Preview(props: Props) {
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    6/6
+                    7/7
                 </div>
                 <TextFadeSkew_2
                     className='text-[20px]'
